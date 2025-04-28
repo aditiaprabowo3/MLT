@@ -115,21 +115,15 @@ Metrik evaluasi yang digunakan
 - Recall: TP/(TP+FN) - Kemampuan menemukan semua positif
 - F1-score: 2(PrecisionRecall)/(Precision+Recall) - Rata-rata harmonik precision-recall
 
-Hasil evaluasi model terbaik (XGBoost setelah tuning):
-- Accuracy: 0.89
-- Precision: 0.88
-- Recall: 0.90
-- F1-score: 0.89
-
-Feature importance analysis menunjukkan:
-- Alcohol: kontributor terbesar (23%)
-- Volatile acidity: 18%
-- Sulphates: 15%
-- Total sulfur dioxide: 12%
+Hasil evaluasi model terbaik Random Forest:
+- Accuracy: 0.69
+- Precision: 0.82
+- Recall: 0.48
+- F1-score: 0.61
 
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
 
-Model ini berhasil memprediksi kualitas wine dengan baik dan dapat digunakan sebagai alat bantu objektif dalam penilaian kualitas wine.
+Model ini berhasil memprediksi kualitas wine dengan cukup baik dan masih bisa diperbaiki supaya dapat melakukan penilaian kualitas wine dengan lebih baik.
 
 **---Ini adalah bagian akhir laporan---**

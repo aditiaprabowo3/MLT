@@ -12,6 +12,7 @@ Proyek ini bertujuan untuk mengembangkan model prediktif yang dapat mengklasifik
 
 ## Business Understanding
 ### Problem Statements
+
 Menjelaskan pernyataan masalah latar belakang:
 - Bagaimana memprediksi kualitas wine secara akurat berdasarkan parameter kimiawinya?
 - Faktor kimia apa saja yang paling berpengaruh terhadap kualitas wine?

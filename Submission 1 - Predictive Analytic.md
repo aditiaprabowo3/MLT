@@ -45,6 +45,7 @@ Variabel target dalam dataset ini adalah `quality`, yang merepresentasikan skor 
 Informasi struktur dataset dapat dilihat pada gambar berikut:
 
 <img src="https://github.com/user-attachments/assets/1ccb3dfe-494e-494e-99f6-8f9b6adc7798" alt="Informasi Dataset" width="400">
+
 Dari gambar yang di tampilkan terdapat 11 variabel bertipe float64 dan 2 variabel bertipe int64
 
 ### Deskripsi Variabel

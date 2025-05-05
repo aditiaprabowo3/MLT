@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Aditia Prabowo
+![Screenshot (1625) 1](https://github.com/user-attachments/assets/e43a17a5-6c22-4c10-b6d2-d8b5fb70e930)![Screenshot (1624) 1](https://github.com/user-attachments/assets/aa3ff3e1-5736-473b-a338-8718b445d70d)# Laporan Proyek Machine Learning - Aditia Prabowo
 
 ## Domain Proyek
 
@@ -203,6 +203,7 @@ Langkah ini penting karena model supervised learning membutuhkan pemisahan yang 
 
 ### 2. Pembagian dataset dengan fungsi train_test_split dari library sklearn.
 <img src="https://github.com/user-attachments/assets/87fe4dbc-0ad6-4cff-8f94-4d42ee32a77c" alt="Informasi Dataset" width="600">
+
 Dataset dibagi menjadi dua bagian yaitu 80% dan 20%: data latih yang memiliki data 914 dan data uji memiliki data 229 menggunakan  menggunakan train_test_split dari library sklearn
 
 ### 3. Scaling fitur numerik untuk StandardScaler
@@ -222,6 +223,7 @@ Dengan standarisasi ini, model dapat dilatih secara lebih stabil dan akurat.
 ### 4. Melakukan Balancing data karena data tidak seimbang
 Pada tahap ini melakukan penanganan data tidak seimbang (imbalanced data) pada label target quality.
 <img src="https://github.com/user-attachments/assets/f4a1bcfb-76b7-424d-b63a-f41c9acaa655" alt="Informasi Dataset" width="600">
+
 **Masalah:** 
 Distribusi label quality pada data training sangat tidak seimbang, di mana beberapa kelas (misalnya quality = 3, 4, dan 8) hanya memiliki sedikit sampel. Ketidakseimbangan ini dapat menyebabkan model bias terhadap kelas mayoritas.
 
@@ -234,67 +236,103 @@ Digunakan teknik SMOTE (Synthetic Minority Over-sampling Technique) untuk melaku
 - Dengan langkah ini, semua kelas dalam data training akan memiliki jumlah sampel yang seimbang, memungkinkan model untuk belajar secara lebih adil terhadap setiap kelas tanpa bias terhadap kelas mayoritas.
 
 ## Model Development
+Pada bagian ini, kita akan membangun 3 model machine learning untuk menguji sebarapa baik akurasi model, sehingga model tersebut yang disarankan untuk memprediksi prestasi siswa.
 
+### 1. Model Development dengan Logistic Regression
+salah satu algoritma klasifikasi yang umum digunakan untuk memprediksi variabel kategorikal. Meskipun sederhana, model ini cukup kuat dalam kasus klasifikasi multi-kelas jika datanya bersih dan terstandarisasi.
 
+Logistic Regression bekerja dengan menghitung probabilitas setiap kelas menggunakan fungsi sigmoid (logistic function) dan memilih kelas dengan probabilitas tertinggi. Untuk klasifikasi multi-kelas, digunakan pendekatan multinomial.
 
+Parameter yang digunakan:
+- class_weight='balanced'
+Digunakan agar model memberi bobot lebih besar pada kelas minoritas, membantu menangani ketidakseimbangan kelas.
+- max_iter=5000
+Jumlah maksimum iterasi ditingkatkan untuk memastikan model sempat konvergen, terutama karena jumlah kelas cukup banyak.
+- solver='saga'
+Optimizer saga dipilih karena mendukung penalti l1, l2, dan berskala baik untuk dataset besar atau sparse.
+- random_state=42
+Diset agar hasil eksperimen konsisten dan dapat direproduksi.
 
+Alasan Pemilihan:
+Logistic Regression dipilih sebagai baseline model karena:
+- Cepat dan efisien untuk dijalankan.
+- Hasilnya mudah diinterpretasikan.
+- Memberikan performa awal yang bisa dibandingkan dengan model yang lebih kompleks.
 
+### 2. Model Development dengan Support Vector Machine (SVM)
+Merupakan algoritma klasifikasi yang efektif untuk kasus linear maupun non-linear. SVM bekerja dengan mencari hyperplane terbaik yang memisahkan kelas-kelas pada data. Ketika data tidak dapat dipisahkan secara linear, SVM dapat menggunakan teknik kernel untuk mentransformasikan data ke dimensi lebih tinggi.
 
+SVM mencari hyperplane (garis batas) yang memaksimalkan margin antar kelas. Dengan kernel rbf, SVM dapat memetakan data ke dimensi lebih tinggi agar lebih mudah dipisahkan. SVM sangat berguna dalam klasifikasi dengan margin yang tegas.
 
+Parameter yang digunakan:
+- kernel='rbf'
+Kernel radial digunakan untuk menangani data yang tidak dapat dipisahkan secara linear.
+- C=1.0
+Nilai default untuk parameter regularisasi; mengontrol kompleksitas model.
+- class_weight='balanced'
+Otomatis memberi bobot lebih besar pada kelas minoritas untuk mengatasi data yang tidak seimbang.
+-probability=True
+Diaktifkan agar model bisa memberikan probabilitas prediksi (berguna untuk visualisasi atau thresholding ke depan).
 
+Alasan pemilihan: SVM dipilih karena:
+- Mampu menangani klasifikasi non-linear dengan baik.
+- Performa kuat pada dataset berskala kecil hingga menengah.
+- Memberikan baseline pembanding yang berbeda dari Logistic Regression.
 
+### 3. Model Development dengan Random Forest
+sebuah algoritma ensemble learning berbasis pohon keputusan (Decision Tree). Random Forest bekerja dengan membangun banyak pohon keputusan secara acak lalu menggabungkan hasil prediksi dari masing-masing pohon untuk menentukan kelas akhir melalui proses voting.
 
+Pendekatan ini membuat model:
+- Lebih tahan terhadap overfitting dibanding pohon tunggal.
+- Memiliki performa dan stabilitas lebih baik, terutama untuk dataset yang kompleks atau tidak linear.
 
+Parameter yang digunakan:
+- n_estimators=100 Jumlah pohon dalam hutan. Semakin banyak pohon, semakin stabil hasilnya, namun waktu komputasi juga bertambah.
+- class_weight='balanced' (jika digunakan) Memberi bobot lebih pada kelas minoritas untuk menangani imbalance antar kelas.
+- random_state=42 Agar hasil eksperimen bisa diulang (reproducible).
 
+Alasan Pemilihan:
+Random Forest dipilih karena:
+- Kemampuan menangani data yang kompleks, baik linear maupun non-linear.
+- Robust terhadap outlier dan noise.
+- Tidak memerlukan scaling fitur, meskipun scaling tetap dilakukan dalam proyek ini untuk konsistensi dengan model lain.
+- Memiliki fitur importance ranking, yang berguna dalam analisis lebih lanjut.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- menyiapkan data sebelum pemodelan machine learning:
-  - Memisahkan Fitur dan Target
-    Fitur (X) adalah seluruh kolom kecuali kolom target (quality). Target (y) adalah kolom quality yang akan diprediksi.
-  - Split Data ke Training dan Testing
-    Data dibagi menjadi 80% data latih dan 20% data uji menggunakan train_test_split().
-    Parameter stratify=y digunakan untuk menjaga proporsi kelas churn dan non-churn agar tetap seimbang di data train dan test.
+## Evaluasi Model
+Pada proyek ini, penilaian model menggunakan confusion matrix, akurasi, dan f1 score sebagai metrik evaluasi untuk masing-masing model.
+Penerapan Matriks Confusion, Akurasi, dan Skor f1 sebagai berikut:
 
-    Kenapa split dilakukan sebelum normalisasi?
-    Karena kita ingin menghindari data leakage. Jika kita melakukan normalisasi sebelum data dibagi, maka statistik (mean dan std) dari data uji bisa ikut dihitung,       
-    sehingga informasi dari masa depan "bocor" ke model. Ini menyebabkan evaluasi model menjadi tidak akurat.
-- Standardisasi Kolom Numerik
-Fitur numerik distandarisasi menggunakan StandardScaler agar memiliki mean = 0 dan standar deviasi = 1.
-Proses standarisasi hanya dilakukan pada data training (fit_transform) dan diterapkan ke data testing (transform) menggunakan scaler yang sama, tanpa menghitung ulang statistik dari data uji.
-- Data preparation atau preprocessing sangat penting sebelum melatih model machine learning. Proses ini memastikan bahwa data yang digunakan dalam pelatihan model berkualitas tinggi dan siap untuk menghasilkan model yang optimal.
+#### 1. Model Development dengan  Logistic Regression
+Berikut merupakan matriks confusion, akurasi, dan skor f1 dari model * Logistic Regression*
+<img src="https://github.com/user-attachments/assets/b0da796a-b8fb-4682-bd01-f91d29b2dbcf" alt="Informasi Dataset" width="600">
 
-## Modeling
-Tahapan ini membahas mengenai model machine learning yang digunakan untuk menyelesaikan permasalahan. Anda perlu menjelaskan tahapan dan parameter yang digunakan pada proses pemodelan.
+Interpretasi: 
+- Akurasi model: Model Logistic Regression mencapai 42.36%, yang cukup rendah. akurasi ini menunjukkan bahwa model masih kesulitan memprediksi kualitas wine secara akurat, terutama pada kelas minoritas.
+- F1-score tertimbang (weighted avg): F1-score tertimbang adalah 0.48, yang mengindikasikan bahwa secara keseluruhan, model masih menunjukkan keseimbangan precision dan recall yang cukup lemah. Terutama pada kelas dengan jumlah sampel kecil, model kesulitan memberikan prediksi yang baik.
 
-Algoritma yang digunakan:
-Random Forest:
-- Kelebihan: Handles non-linear relationships, feature importance
-- Kekurangan: Cenderung overfit jika tidak diatur dengan baik
-XGBoost:
-- Kelebihan: Powerful untuk data terstruktur, regularisasi bawaan
-- Kekurangan: Lebih kompleks, butuh tuning
+#### 2. Model Model Development dengan SVM
+Berikut merupakan matriks confusion, akurasi, dan skor f1 dari model *SVM*
+<img src="https://github.com/user-attachments/assets/52c69864-24cd-4f84-b792-94f7be70f73f" alt="Informasi Dataset" width="600">
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan kelebihan dan kekurangan dari setiap algoritma yang digunakan.
-- Jika menggunakan satu algoritma pada solution statement, lakukan proses improvement terhadap model dengan hyperparameter tuning. **Jelaskan proses improvement yang dilakukan**.
-- Jika menggunakan dua atau lebih algoritma pada solution statement, maka pilih model terbaik sebagai solusi. **Jelaskan mengapa memilih model tersebut sebagai model terbaik**.
+Interpretasi:
+- Akurasi model: Model SVM dengan kernel linear mencapai akurasi 17.90%, yang sangat rendah. Akurasi ini menunjukkan bahwa model masih kesulitan memprediksi kelas dengan baik, terutama pada kelas minoritas yang jarang muncul dalam dataset.
+- F1-score tertimbang (weighted avg): F1-score tertimbang adalah 0.23, yang mengindikasikan bahwa secara keseluruhan, model menunjukkan keseimbangan precision dan recall yang sangat lemah. Terutama pada kelas dengan jumlah sampel kecil, model kesulitan memberikan prediksi yang baik.
 
-## Evaluation
-Metrik evaluasi yang digunakan
-- Accuracy: (TP+TN)/(TP+TN+FP+FN) - Mengukur proporsi prediksi benar
-- Precision: TP/(TP+FP) - Kemampuan model tidak memprediksi negatif sebagai positif
-- Recall: TP/(TP+FN) - Kemampuan menemukan semua positif
-- F1-score: 2(PrecisionRecall)/(Precision+Recall) - Rata-rata harmonik precision-recall
+#### 3. Model Development dengan Random Forest
+Berikut merupakan matriks confusion, akurasi, dan skor f1 dari model *Random Forest*
+<img src="https://github.com/user-attachments/assets/8821b118-814a-41db-bea6-850b60b4850c" alt="Informasi Dataset" width="600">
 
-Hasil evaluasi model terbaik Random Forest:
-- Accuracy: 0.69
-- Precision: 0.82
-- Recall: 0.48
-- F1-score: 0.61
+Interpretasi: 
+- Akurasi model sebesar 70%, menunjukkan bahwa model cukup baik dalam mengenali sebagian besar data uji, terutama pada kelas mayoritas (quality 5 dan 6).
+- F1-score tertimbang (weighted avg): Weighted average cukup tinggi, karena mempertimbangkan jumlah data per kelas (dominan di kelas 5 dan 6).
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+### Hasil Evaluasi
+Dari seluruh akurasi yang diketahui dari keempat model, dibentuk bar plot untuk melihat perbandingan nilai akurasi model sebagai berikut. 
+<img src="https://github.com/user-attachments/assets/99e5e890-1a01-4ced-8b65-d22d121ed4b2" alt="Informasi Dataset" width="600">
+Berdasarkan gambar di atas dan evaluasi masing-masing model untuk mengetahui skor akurasi, skor F1, dan jumlah kesalahan klasifikasi pada masing-masing model, didapat model *Random Forest* merupakan model terbaik karena memiliki skor akurasi dan skor F1 tertinggi.
 
-Model ini berhasil memprediksi kualitas wine dengan cukup baik dan masih bisa diperbaiki supaya dapat melakukan penilaian kualitas wine dengan lebih baik.
-
-**---Ini adalah bagian akhir laporan---**
+## Kesimpulan
+Setelah menguji data menggunakan 3 model *machine learning*, yaitu ***Logistic Regresion**, ***Support Vector Machine* (SVM)**, ***Random Forest*** untuk memprediksi performa kualitas wine, diperoleh:
+- ***Random Forest*** menunjukkan performa terbaik dengan akurasi 69.87%, jauh lebih unggul dibandingkan model lainnya.
+- ***Logistic Regression*** memiliki akurasi sedang sebesar 42.36%, namun masih jauh tertinggal dari Random Forest.
+- ***SVM*** menunjukkan performa paling rendah dengan akurasi hanya 17.90%, yang menunjukkan bahwa model ini kurang cocok untuk dataset yang digunakan.

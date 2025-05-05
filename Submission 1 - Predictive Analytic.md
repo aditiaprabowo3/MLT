@@ -74,6 +74,7 @@ Pada tahap ini kita akan mengecek data yang tidak valid pada dataset. Setelah di
 
 ### 1. pesebaran data kolom numerikal dalam bentuk grafik histogram
 Pada tahap ini, kita akan membuat visualisasi data numerikal dalam bentuk grafik dengan menggunakan library python matplotlib
+
 <img src="https://github.com/user-attachments/assets/bddb04d6-e896-4b0f-8fe9-6969c2804a5a" alt="Informasi Dataset" width="600">
 
 Interpretasi:
@@ -117,6 +118,7 @@ Interpretasi:
   
 ### 2. Analisis Korelasi Fitur terhadap Kualitas Wine 
 Pada tahap ini kita akan Melihat korelasi variabel numerik dengan menggunakan Heatmap
+
 <img src="https://github.com/user-attachments/assets/6392fc73-db28-4fec-b88c-ef57f8d09c09" alt="Informasi Dataset" width="600">
 
 Interpretasi:
@@ -137,6 +139,7 @@ Interpretasi:
     - Walaupun pengaruhnya tidak besar secara langsung, fitur-fitur tersebut tetap **layak diuji efektivitasnya** dalam proses pemodelan, seperti regresi atau klasifikasi.
 
 ### 3. Analisis hubungan antar semua fitur numerik dalam dataset df_wine dalam bentuk scatter plot, dan juga histogram
+
 <img src="https://github.com/user-attachments/assets/978ef0f4-e699-49f3-ab8b-be48831128a0" alt="Informasi Dataset" width="800">
 
 Interpretasi:
@@ -162,6 +165,7 @@ Visualisasi pairplot digunakan untuk:
   - `residual sugar`
 
 ### 4. Analisis distribusi skor kualitas wine dalam bentuk bar chart
+
 <img src="https://github.com/user-attachments/assets/c67bae84-29eb-4064-8b9b-eecaae37c2680" alt="Informasi Dataset" width="600">
 
 Interpretasi:
@@ -179,6 +183,7 @@ Fokus analisis atau peningkatan kualitas wine sebaiknya diarahkan pada **wine de
 karena kelompok ini **mendominasi populasi** dan berpotensi untuk **ditingkatkan kualitasnya** melalui perbaikan proses atau bahan.
 
 ### 5. Analisis hubungan antara kadar alkohol dan kualitas wine
+
 <img src="https://github.com/user-attachments/assets/db8b7214-8c73-447f-a69b-06b3ee423770" alt="Informasi Dataset" width="600">
 
 Interpretasi:
@@ -202,6 +207,7 @@ Pada tahap ini, dataset dipisahkan menjadi dua bagian: fitur (X) dan target (y).
 Langkah ini penting karena model supervised learning membutuhkan pemisahan yang jelas antara fitur (sebagai variabel independen) dan target (sebagai variabel dependen).
 
 ### 2. Pembagian dataset dengan fungsi train_test_split dari library sklearn.
+
 <img src="https://github.com/user-attachments/assets/87fe4dbc-0ad6-4cff-8f94-4d42ee32a77c" alt="Informasi Dataset" width="600">
 
 Dataset dibagi menjadi dua bagian yaitu 80% dan 20%: data latih yang memiliki data 914 dan data uji memiliki data 229 menggunakan  menggunakan train_test_split dari library sklearn
@@ -222,6 +228,7 @@ Dengan standarisasi ini, model dapat dilatih secara lebih stabil dan akurat.
 
 ### 4. Melakukan Balancing data karena data tidak seimbang
 Pada tahap ini melakukan penanganan data tidak seimbang (imbalanced data) pada label target quality.
+
 <img src="https://github.com/user-attachments/assets/f4a1bcfb-76b7-424d-b63a-f41c9acaa655" alt="Informasi Dataset" width="600">
 
 **Masalah:** 
@@ -304,6 +311,7 @@ Penerapan Matriks Confusion, Akurasi, dan Skor f1 sebagai berikut:
 
 #### 1. Model Development dengan  Logistic Regression
 Berikut merupakan matriks confusion, akurasi, dan skor f1 dari model * Logistic Regression*
+
 <img src="https://github.com/user-attachments/assets/b0da796a-b8fb-4682-bd01-f91d29b2dbcf" alt="Informasi Dataset" width="600">
 
 Interpretasi: 
@@ -312,6 +320,7 @@ Interpretasi:
 
 #### 2. Model Model Development dengan SVM
 Berikut merupakan matriks confusion, akurasi, dan skor f1 dari model *SVM*
+
 <img src="https://github.com/user-attachments/assets/52c69864-24cd-4f84-b792-94f7be70f73f" alt="Informasi Dataset" width="600">
 
 Interpretasi:
@@ -320,6 +329,7 @@ Interpretasi:
 
 #### 3. Model Development dengan Random Forest
 Berikut merupakan matriks confusion, akurasi, dan skor f1 dari model *Random Forest*
+
 <img src="https://github.com/user-attachments/assets/8821b118-814a-41db-bea6-850b60b4850c" alt="Informasi Dataset" width="600">
 
 Interpretasi: 
@@ -328,7 +338,9 @@ Interpretasi:
 
 ### Hasil Evaluasi
 Dari seluruh akurasi yang diketahui dari keempat model, dibentuk bar plot untuk melihat perbandingan nilai akurasi model sebagai berikut. 
+
 <img src="https://github.com/user-attachments/assets/99e5e890-1a01-4ced-8b65-d22d121ed4b2" alt="Informasi Dataset" width="600">
+
 Berdasarkan gambar di atas dan evaluasi masing-masing model untuk mengetahui skor akurasi, skor F1, dan jumlah kesalahan klasifikasi pada masing-masing model, didapat model *Random Forest* merupakan model terbaik karena memiliki skor akurasi dan skor F1 tertinggi.
 
 ## Kesimpulan

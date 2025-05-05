@@ -189,7 +189,53 @@ Interpretasi:
 5. Secara umum, ada kecenderungan positif antara kadar alkohol dan skor kualitas: wine dengan alkohol lebih tinggi cenderung memiliki skor kualitas lebih baik.
 
 ## Data Preparation
-Pada tahap preparation ini saya menggunakan tekinik penyimpanan data sebelum pemodelan machine learning, Split Data ke Training dan Testing, dan Standardisasi Kolom Numerik
+Pada tahap ini kita akan melakukan proses transformasi pada data sehingga menjadi bentuk yang cocok untuk proses pemodelan. Ada beberapa tahap persiapan data perlu dilakukan, yaitu:
+1. Memisah fitur dan taarget
+2. Pembagian dataset dengan fungsi train_test_split dari library sklearn.
+3. Scaling fitur numerik untuk StandardScaler
+4. Melakukan Balancing data karena data tidak seimbang
+
+### 1. Memisah fitur dan taarget
+Pada tahap ini, dataset dipisahkan menjadi dua bagian: fitur (X) dan target (y).
+- X berisi seluruh kolom kecuali kolom quality, karena kolom-kolom ini akan digunakan sebagai input untuk memprediksi kualitas wine.
+- y adalah kolom quality yang berfungsi sebagai label atau target prediksi dalam model machine learning yang akan dibuat.
+Langkah ini penting karena model supervised learning membutuhkan pemisahan yang jelas antara fitur (sebagai variabel independen) dan target (sebagai variabel dependen).
+
+### 2. Pembagian dataset dengan fungsi train_test_split dari library sklearn.
+<img src="https://github.com/user-attachments/assets/87fe4dbc-0ad6-4cff-8f94-4d42ee32a77c" alt="Informasi Dataset" width="600">
+Dataset dibagi menjadi dua bagian yaitu 80% dan 20%: data latih yang memiliki data 914 dan data uji memiliki data 229 menggunakan  menggunakan train_test_split dari library sklearn
+
+### 3. Scaling fitur numerik untuk StandardScaler
+Pada tahap ini dilakukan standarisasi terhadap fitur-fitur numerik menggunakan StandardScaler dari sklearn.preprocessing.
+
+Tujuan:
+- Untuk menyamakan skala antar fitur, karena sebagian besar algoritma machine learning sensitif terhadap perbedaan skala antar variabel.
+- StandardScaler mengubah data sehingga memiliki mean = 0 dan standar deviasi = 1.
+
+Langkah:
+- fit_transform() hanya dilakukan pada data training agar tidak terjadi data leakage (kebocoran informasi dari data uji).
+- transform() kemudian digunakan pada data uji menggunakan parameter hasil training.
+Fitur yang distandarisasi:
+fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, alcohol.
+Dengan standarisasi ini, model dapat dilatih secara lebih stabil dan akurat.
+
+### 4. Melakukan Balancing data karena data tidak seimbang
+Pada tahap ini melakukan penanganan data tidak seimbang (imbalanced data) pada label target quality.
+<img src="https://github.com/user-attachments/assets/f4a1bcfb-76b7-424d-b63a-f41c9acaa655" alt="Informasi Dataset" width="600">
+**Masalah:** 
+Distribusi label quality pada data training sangat tidak seimbang, di mana beberapa kelas (misalnya quality = 3, 4, dan 8) hanya memiliki sedikit sampel. Ketidakseimbangan ini dapat menyebabkan model bias terhadap kelas mayoritas.
+
+**Solusi:** 
+Digunakan teknik SMOTE (Synthetic Minority Over-sampling Technique) untuk melakukan oversampling pada kelas minoritas secara sintetis. SMOTE bekerja dengan membuat sampel baru berdasarkan interpolasi antar tetangga terdekat di kelas minoritas.
+
+**Langkah yang dilakukan**
+- Tentukan parameter k_neighbors pada SMOTE dengan memperhitungkan jumlah sampel terkecil di kelas minoritas untuk menghindari error saat proses oversampling. Pastikan nilai k_neighbors tidak lebih besar dari jumlah sampel terkecil di kelas minoritas.
+- Terapkan SMOTE hanya pada data training yang telah diskalakan (X_train_scaled) agar proses resampling tidak memengaruhi data uji (X_test), yang seharusnya tetap tidak dimanipulasi.
+- Dengan langkah ini, semua kelas dalam data training akan memiliki jumlah sampel yang seimbang, memungkinkan model untuk belajar secara lebih adil terhadap setiap kelas tanpa bias terhadap kelas mayoritas.
+
+## Model Development
+
+
 
 
 

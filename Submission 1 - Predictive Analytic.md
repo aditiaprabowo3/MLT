@@ -64,7 +64,6 @@ Dataset ini memiliki 13 variabel dengan keterangan sebagai berikut:
 | `sulphates`           | Senyawa sulfat yang digunakan untuk stabilisasi wine ⚗️                   |
 | `alcohol`             | Persentase kandungan alkohol dalam wine 🍷                                 |
 | `quality`             | Skor kualitas wine berdasarkan penilaian sensorik (0–10) 🏅                |
-
 | `Id`                  | Nomor identifikasi unik untuk setiap sampel data 🆔  
 
 

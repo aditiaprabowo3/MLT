@@ -1,4 +1,4 @@
-![Screenshot (1625) 1](https://github.com/user-attachments/assets/e43a17a5-6c22-4c10-b6d2-d8b5fb70e930)![Screenshot (1624) 1](https://github.com/user-attachments/assets/aa3ff3e1-5736-473b-a338-8718b445d70d)# Laporan Proyek Machine Learning - Aditia Prabowo
+# Laporan Proyek Machine Learning - Aditia Prabowo
 
 ## Domain Proyek
 
@@ -137,7 +137,7 @@ Interpretasi:
     - Walaupun pengaruhnya tidak besar secara langsung, fitur-fitur tersebut tetap **layak diuji efektivitasnya** dalam proses pemodelan, seperti regresi atau klasifikasi.
 
 ### 3. Analisis hubungan antar semua fitur numerik dalam dataset df_wine dalam bentuk scatter plot, dan juga histogram
-<img src="https://github.com/user-attachments/assets/978ef0f4-e699-49f3-ab8b-be48831128a0" alt="Informasi Dataset" width="400">
+<img src="https://github.com/user-attachments/assets/978ef0f4-e699-49f3-ab8b-be48831128a0" alt="Informasi Dataset" width="800">
 
 Interpretasi:
 ### Tujuan Visualisasi Pairplot

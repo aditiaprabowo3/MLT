@@ -137,7 +137,7 @@ Interpretasi:
     - Walaupun pengaruhnya tidak besar secara langsung, fitur-fitur tersebut tetap **layak diuji efektivitasnya** dalam proses pemodelan, seperti regresi atau klasifikasi.
 
 ### 3. Analisis hubungan antar semua fitur numerik dalam dataset df_wine dalam bentuk scatter plot, dan juga histogram
-<img src="https://github.com/user-attachments/assets/978ef0f4-e699-49f3-ab8b-be48831128a0" alt="Informasi Dataset" width="800">
+<img src="https://github.com/user-attachments/assets/978ef0f4-e699-49f3-ab8b-be48831128a0" alt="Informasi Dataset" width="400">
 
 Interpretasi:
 ### Tujuan Visualisasi Pairplot

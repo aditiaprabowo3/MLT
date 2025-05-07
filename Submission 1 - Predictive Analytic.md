@@ -24,7 +24,6 @@ Menjelaskan tujuan dari pernyataan masalah:
     
 ### Solution statements
 - Menggunakan 3 model *machine learning* yaitu *Logistic Regression*, *SVM Classifier*, dan *Random Forest* untuk klasifikasi dengan feature importance analysis
-- Melakukan optimasi hyperparameter untuk mendapatkan model terbaik
 - Menggunakan confusion matrix dan f1 score pada masing-masing model *machine learning* untuk menemukan model terbaik berdasarkan akurasi tertinggi.
 
 ## Data Understanding

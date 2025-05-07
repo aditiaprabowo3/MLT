@@ -310,28 +310,28 @@ Metrik ini sesuai dengan:
 
 ### Hasil Evaluasi Model
 1. Logistic Regression
-- Accuracy: 0.71
-- Precision (macro): 0.72
-- Recall (macro): 0.70
-- F1-Score (macro): 0.71
-Analisis: Model ini cukup baik untuk baseline, namun kurang kuat dalam menangani relasi non-linear antar fitur kimiawi wine. Beberapa kelas minoritas sulit dikenali.
+- Accuracy: 0.42
+- Precision (macro): 0.29
+- Recall (macro): 0.36
+- F1-Score (macro): 0.26
+Analisis: Model ini memiliki performa rendah. Meski sederhana dan cepat, Logistic Regression tidak mampu menangkap relasi non-linear antar fitur kimiawi wine. Hasil prediksi untuk kelas minoritas sangat buruk, bahkan beberapa kelas tidak terdeteksi sama sekali.
 
-2.  Support Vector Machine (SVM)
-- Accuracy: 0.73
-- Precision (macro): 0.75
-- Recall (macro): 0.72
-- F1-Score (macro): 0.73
-Analisis: Performa sedikit lebih baik dari Logistic Regression, terutama dalam menangani beberapa kelas minor. Namun, waktu komputasi SVM cenderung lebih tinggi dan skalabilitasnya lebih rendah.
+2. Support Vector Machine (SVM)
+- Accuracy: 0.18
+- Precision (macro): 0.23
+- Recall (macro): 0.17
+- F1-Score (macro): 0.14
+Analisis: Performa SVM di bawah ekspektasi, lebih buruk dari Logistic Regression. Hal ini kemungkinan karena ketidakseimbangan data dan parameter default yang belum dioptimasi. Meski SVM biasanya unggul untuk data dengan margin yang jelas, model ini gagal mengenali sebagian besar kelas dengan baik.
 
 3. Random Forest Classifier
 - Accuracy: 0.70
-- Precision (macro): 0.72
-- Recall (macro): 0.73
-- F1-Score (macro): 0.69
-Analisis: Model terbaik secara konsisten. Mampu menangkap relasi kompleks dalam data dan menangani kelas minor lebih baik. Juga lebih stabil dalam prediksi berulang.
+- Precision (macro): 0.37
+- Recall (macro): 0.34
+- F1-Score (macro): 0.34
+Analisis: Random Forest adalah model dengan performa terbaik. Meski macro average masih rendah karena kelas minoritas sulit dikenali, model ini memberikan hasil prediksi yang jauh lebih baik untuk kelas mayoritas seperti skor kualitas 5 dan 6. Random Forest juga lebih stabil dan cocok untuk menangani relasi kompleks antar fitur.
 
 Dampak terhadap Business Understanding:
-Berdasarkan ketiga model Random Forest dengan memiliki akurasi tertinggi sehingga sangat sesuai digunakan:
+Berdasarkan ketiga model tersebut, Berdasarkan hasil evaluasi, Random Forest merupakan pilihan terbaik dengan akurasi 70%, yang sudah cukup layak untuk kebutuhan bisnis:
 - Mengurangi risiko kesalahan klasifikasi: wine buruk tidak salah dikira bagus (False Positive) dan sebaliknya.
 - Menghemat waktu dan biaya: karena prediksi kualitas bisa dilakukan cepat hanya dari data kimiawi.
 - Meningkatkan kepercayaan pelanggan dan konsistensi produk, karena kualitas wine yang tinggi bisa dijamin sejak awal proses.

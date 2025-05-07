@@ -156,8 +156,9 @@ Visualisasi pairplot digunakan untuk:
   - `residual sugar`
 
 ### 4. Analisis distribusi skor kualitas wine dalam bentuk bar chart
+![Screenshot (1639) 1](https://github.com/user-attachments/assets/95dce2ea-6f1a-4aab-8c48-e4ac869e0cf0)
 
-<img src="https://github.com/user-attachments/assets/c67bae84-29eb-4064-8b9b-eecaae37c2680" alt="Informasi Dataset" width="600">
+
 
 Interpretasi:
 1. Distribusi Tidak Merata

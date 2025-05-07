@@ -191,7 +191,7 @@ Interpretasi:
 
 ## Data Preparation
 Pada tahap ini kita akan melakukan proses transformasi pada data sehingga menjadi bentuk yang cocok untuk proses pemodelan. Ada beberapa tahap persiapan data perlu dilakukan, yaitu:
-1. Memisah fitur dan taarget
+1. Memisah fitur dan target
 2. Pembagian dataset dengan fungsi train_test_split dari library sklearn.
 3. Scaling fitur numerik untuk StandardScaler
 4. Melakukan Balancing data karena data tidak seimbang
@@ -301,7 +301,7 @@ Random Forest dipilih karena:
 - Tidak memerlukan scaling fitur, meskipun scaling tetap dilakukan dalam proyek ini untuk konsistensi dengan model lain.
 - Memiliki fitur importance ranking, yang berguna dalam analisis lebih lanjut.
 
-## Evaluasi Model
+## Evaluation
 Pada proyek ini, penilaian model menggunakan confusion matrix, akurasi, dan f1 score sebagai metrik evaluasi untuk masing-masing model.
 Penerapan Matriks Confusion, Akurasi, dan Skor f1 sebagai berikut:
 

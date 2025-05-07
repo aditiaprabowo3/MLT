@@ -4,7 +4,6 @@
 
 Industri wine merupakan salah satu sektor yang terus berkembang dengan permintaan yang tinggi terhadap kualitas produk. Kualitas wine dipengaruhi oleh berbagai faktor kimiawi selama proses produksinya. Dengan memanfaatkan data atribut kimia wine, kita dapat membangun model machine learning untuk memprediksi kualitas wine secara objektif.
 
-**Rubrik/Kriteria Tambahan**:
 Proyek ini bertujuan untuk mengembangkan model prediktif yang dapat mengklasifikasikan kualitas wine berdasarkan karakteristik kimianya. Solusi ini akan membantu produsen wine dalam:
 - Mengontrol kualitas produksi
 - Mengoptimalkan proses fermentasi

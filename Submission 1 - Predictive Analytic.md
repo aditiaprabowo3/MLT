@@ -26,14 +26,11 @@ Menjelaskan tujuan dari pernyataan masalah:
 - Membandingkan performa berbagai algoritma klasifikasi
 
 Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Statement” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
-
-    ### Solution statements
-    - Menggunakan 3 model *machine learning* yaitu *Logistic Regression*, *SVM Classifier*, dan *Random Forest* untuk klasifikasi dengan feature importance analysis
-    - Melakukan optimasi hyperparameter untuk mendapatkan model terbaik
-    - Menggunakan confusion matrix dan f1 score pada masing-masing model *machine learning* untuk menemukan model terbaik berdasarkan akurasi tertinggi.
+    
+### Solution statements
+- Menggunakan 3 model *machine learning* yaitu *Logistic Regression*, *SVM Classifier*, dan *Random Forest* untuk klasifikasi dengan feature importance analysis
+- Melakukan optimasi hyperparameter untuk mendapatkan model terbaik
+- Menggunakan confusion matrix dan f1 score pada masing-masing model *machine learning* untuk menemukan model terbaik berdasarkan akurasi tertinggi.
 
 ## Data Understanding
 Dataset yang digunakan untuk memprediksi kualitas wine diambil dari platform Kaggle dan dapat diakses melalui tautan berikut: [Wine Quality Dataset oleh Yasser H](https://www.kaggle.com/datasets/yasserh/wine-quality-dataset). Dataset ini dipublikasikan oleh Yasser H pada tanggal 13 Oktober 2022. 

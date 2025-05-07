@@ -6,7 +6,6 @@ Industri wine merupakan salah satu sektor yang terus berkembang dengan permintaa
 
 Proyek ini bertujuan untuk mengembangkan model prediktif yang dapat mengklasifikasikan kualitas wine berdasarkan karakteristik kimianya. Solusi ini akan membantu produsen wine dalam:
 - Mengontrol kualitas produksi
-- Mengoptimalkan proses fermentasi
 - Meningkatkan konsistensi kualitas produk
 
 ## Business Understanding

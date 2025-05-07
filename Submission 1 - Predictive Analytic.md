@@ -335,9 +335,3 @@ Berdasarkan ketiga model Random Forest dengan memiliki akurasi tertinggi sehingg
 - Mengurangi risiko kesalahan klasifikasi: wine buruk tidak salah dikira bagus (False Positive) dan sebaliknya.
 - Menghemat waktu dan biaya: karena prediksi kualitas bisa dilakukan cepat hanya dari data kimiawi.
 - Meningkatkan kepercayaan pelanggan dan konsistensi produk, karena kualitas wine yang tinggi bisa dijamin sejak awal proses.
-
-## Kesimpulan
-Setelah menguji data menggunakan 3 model *machine learning*, yaitu ***Logistic Regresion**, ***Support Vector Machine* (SVM)**, ***Random Forest*** untuk memprediksi performa kualitas wine, diperoleh:
-- ***Random Forest*** menunjukkan performa terbaik dengan akurasi 69.87%, jauh lebih unggul dibandingkan model lainnya.
-- ***Logistic Regression*** memiliki akurasi sedang sebesar 42.36%, namun masih jauh tertinggal dari Random Forest.
-- ***SVM*** menunjukkan performa paling rendah dengan akurasi hanya 17.90%, yang menunjukkan bahwa model ini kurang cocok untuk dataset yang digunakan.

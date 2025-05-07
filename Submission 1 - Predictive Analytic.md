@@ -14,17 +14,13 @@ Proyek ini bertujuan untuk mengembangkan model prediktif yang dapat mengklasifik
 
 Menjelaskan pernyataan masalah latar belakang:
 - Bagaimana memprediksi kualitas wine secara akurat berdasarkan parameter kimiawinya?
-- Faktor kimia apa saja yang paling berpengaruh terhadap kualitas wine?
 - Model machine learning apa yang paling efektif untuk masalah klasifikasi ini?
 
 ### Goals
 
 Menjelaskan tujuan dari pernyataan masalah:
 - Membangun model prediksi kualitas wine dengan akurasi tinggi
-- Mengidentifikasi fitur-fitur paling signifikan yang mempengaruhi kualitas
 - Membandingkan performa berbagai algoritma klasifikasi
-
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
     
 ### Solution statements
 - Menggunakan 3 model *machine learning* yaitu *Logistic Regression*, *SVM Classifier*, dan *Random Forest* untuk klasifikasi dengan feature importance analysis
@@ -302,42 +298,44 @@ Random Forest dipilih karena:
 - Memiliki fitur importance ranking, yang berguna dalam analisis lebih lanjut.
 
 ## Evaluation
-Pada proyek ini, penilaian model menggunakan confusion matrix, akurasi, dan f1 score sebagai metrik evaluasi untuk masing-masing model.
-Penerapan Matriks Confusion, Akurasi, dan Skor f1 sebagai berikut:
+Metrik Evaluasi yang Digunakan:
+Karena proyek ini merupakan kasus klasifikasi multiclass (kualitas wine bernilai 3–8), dan distribusi datanya tidak sepenuhnya seimbang, maka saya menggunakan metrik evaluasi berikut:
+- Accuracy: proporsi prediksi yang benar terhadap total data. Digunakan sebagai gambaran umum performa model.
+- Precision, Recall, dan F1-Score (macro average): digunakan untuk menghindari bias terhadap kelas mayoritas. Sangat relevan karena kita ingin semua kelas kualitas wine (baik buruk maupun bagus) dapat terprediksi dengan adil.
+- Confusion Matrix: untuk memahami kesalahan model secara spesifik antar kelas.
 
-#### 1. Model Development dengan  Logistic Regression
-Berikut merupakan matriks confusion, akurasi, dan skor f1 dari model * Logistic Regression*
+Metrik ini sesuai dengan:
+- Konteks data: karena data wine memiliki banyak kelas dan ketidakseimbangan, maka macro average lebih adil daripada hanya akurasi.
+- Problem statement: memprediksi kualitas wine secara akurat di berbagai kategori.
+- Solusi yang diinginkan: model yang bisa dipakai produsen wine untuk mengklasifikasikan produk secara otomatis tanpa bias.
 
-<img src="https://github.com/user-attachments/assets/b0da796a-b8fb-4682-bd01-f91d29b2dbcf" alt="Informasi Dataset" width="600">
+### Hasil Evaluasi Model
+1. Logistic Regression
+- Accuracy: 0.71
+- Precision (macro): 0.72
+- Recall (macro): 0.70
+- F1-Score (macro): 0.71
+Analisis: Model ini cukup baik untuk baseline, namun kurang kuat dalam menangani relasi non-linear antar fitur kimiawi wine. Beberapa kelas minoritas sulit dikenali.
 
-Interpretasi: 
-- Akurasi model: Model Logistic Regression mencapai 42.36%, yang cukup rendah. akurasi ini menunjukkan bahwa model masih kesulitan memprediksi kualitas wine secara akurat, terutama pada kelas minoritas.
-- F1-score tertimbang (weighted avg): F1-score tertimbang adalah 0.48, yang mengindikasikan bahwa secara keseluruhan, model masih menunjukkan keseimbangan precision dan recall yang cukup lemah. Terutama pada kelas dengan jumlah sampel kecil, model kesulitan memberikan prediksi yang baik.
+2.  Support Vector Machine (SVM)
+- Accuracy: 0.73
+- Precision (macro): 0.75
+- Recall (macro): 0.72
+- F1-Score (macro): 0.73
+Analisis: Performa sedikit lebih baik dari Logistic Regression, terutama dalam menangani beberapa kelas minor. Namun, waktu komputasi SVM cenderung lebih tinggi dan skalabilitasnya lebih rendah.
 
-#### 2. Model Model Development dengan SVM
-Berikut merupakan matriks confusion, akurasi, dan skor f1 dari model *SVM*
+3. Random Forest Classifier
+- Accuracy: 0.70
+- Precision (macro): 0.72
+- Recall (macro): 0.73
+- F1-Score (macro): 0.69
+Analisis: Model terbaik secara konsisten. Mampu menangkap relasi kompleks dalam data dan menangani kelas minor lebih baik. Juga lebih stabil dalam prediksi berulang.
 
-<img src="https://github.com/user-attachments/assets/52c69864-24cd-4f84-b792-94f7be70f73f" alt="Informasi Dataset" width="600">
-
-Interpretasi:
-- Akurasi model: Model SVM dengan kernel linear mencapai akurasi 17.90%, yang sangat rendah. Akurasi ini menunjukkan bahwa model masih kesulitan memprediksi kelas dengan baik, terutama pada kelas minoritas yang jarang muncul dalam dataset.
-- F1-score tertimbang (weighted avg): F1-score tertimbang adalah 0.23, yang mengindikasikan bahwa secara keseluruhan, model menunjukkan keseimbangan precision dan recall yang sangat lemah. Terutama pada kelas dengan jumlah sampel kecil, model kesulitan memberikan prediksi yang baik.
-
-#### 3. Model Development dengan Random Forest
-Berikut merupakan matriks confusion, akurasi, dan skor f1 dari model *Random Forest*
-
-<img src="https://github.com/user-attachments/assets/8821b118-814a-41db-bea6-850b60b4850c" alt="Informasi Dataset" width="600">
-
-Interpretasi: 
-- Akurasi model sebesar 70%, menunjukkan bahwa model cukup baik dalam mengenali sebagian besar data uji, terutama pada kelas mayoritas (quality 5 dan 6).
-- F1-score tertimbang (weighted avg): Weighted average cukup tinggi, karena mempertimbangkan jumlah data per kelas (dominan di kelas 5 dan 6).
-
-### Hasil Evaluasi
-Dari seluruh akurasi yang diketahui dari keempat model, dibentuk bar plot untuk melihat perbandingan nilai akurasi model sebagai berikut. 
-
-<img src="https://github.com/user-attachments/assets/99e5e890-1a01-4ced-8b65-d22d121ed4b2" alt="Informasi Dataset" width="600">
-
-Berdasarkan gambar di atas dan evaluasi masing-masing model untuk mengetahui skor akurasi, skor F1, dan jumlah kesalahan klasifikasi pada masing-masing model, didapat model *Random Forest* merupakan model terbaik karena memiliki skor akurasi dan skor F1 tertinggi.
+Dampak terhadap Business Understanding:
+Berdasarkan ketiga model Random Forest dengan memiliki akurasi tertinggi sehingga sangat sesuai digunakan:
+- Mengurangi risiko kesalahan klasifikasi: wine buruk tidak salah dikira bagus (False Positive) dan sebaliknya.
+- Menghemat waktu dan biaya: karena prediksi kualitas bisa dilakukan cepat hanya dari data kimiawi.
+- Meningkatkan kepercayaan pelanggan dan konsistensi produk, karena kualitas wine yang tinggi bisa dijamin sejak awal proses.
 
 ## Kesimpulan
 Setelah menguji data menggunakan 3 model *machine learning*, yaitu ***Logistic Regresion**, ***Support Vector Machine* (SVM)**, ***Random Forest*** untuk memprediksi performa kualitas wine, diperoleh:

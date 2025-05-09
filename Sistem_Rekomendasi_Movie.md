@@ -1,11 +1,11 @@
-# Laporan Proyek Machine Learning - Maklon Jacob Frare
+# Laporan Proyek Machine Learning - Aditia Prabowo
 
 ## Domain Proyek
 Kemajuan teknologi, terutama dalam bidang perangkat bergerak dan internet, telah menciptakan peluang besar bagi pengembangan sistem rekomendasi. Pengguna kini dapat mengakses berbagai platform streaming seperti Netflix, Disney+, dan Amazon Prime yang menawarkan ribuan film. Namun hal ini juga menimbulkan tantangan baru untuk menemukan film yang sesuai dengan selera mereka di antara banyaknya pilihan yang tersedia `[5]`. Untuk mengatasi masalah ini, sistem rekomendasi film dikembangkan sebagai solusi efektif. istem rekomendasi berfungsi untuk memberikan rekomendasi yang dipersonalisasi berdasarkan interaksi pengguna sebelumnya dan preferensi yang diungkapkan, sehingga memudahkan mereka dalam menentukan pilihan `[6]`. Teknologi ini telah menjadi elemen penting dalam meningkatkan pengalaman pengguna di platform digital. 
 Dari latar belakang itulah penulis mengambil topik ini sebagai studi kasus proyek machine learning yang penulis kerjakan dalam membangun sebuah model untuk proyek aplikasi yang sedang penulis kembangkan. Diharapkan model ini nantinya akan berguna untuk memberikan rekomendasi filim bagi pengguna sesuai dengan kebutuhannya.
 
 ## Business Understanding
-Sistem rekomendasi film bertujuan untuk meningkatkan pengalaman pengguna dalam menemukan film yang sesuai dengan preferensi mereka. Dalam konteks bisnis, pemahaman yang mendalam tentang kebutuhan pengguna dan cara sistem dapat memenuhi kebutuhan tersebut sangat penting. Adanya peningkatan jumlah konten film yang tersedia di berbagai platform streaming, sering kali pengguna menghadapi kesulitan dalam memilih film yang ingin ditonton. Hal ini menciptakan kebutuhan untuk sistem rekomendasi yang efektif, yang dapat membantu pengguna menemukan film berdasarkan preferensi pribadi mereka.
+Sistem rekomendasi film dirancang untuk memperkaya pengalaman pengguna dalam menemukan film yang sesuai dengan selera mereka. Dari perspektif bisnis, penting untuk memiliki pemahaman yang mendalam tentang apa yang diinginkan pengguna serta bagaimana sistem bisa memenuhi kebutuhan tersebut. Dengan semakin banyaknya konten film yang tersedia di berbagai platform streaming, pengguna seringkali merasa kesulitan dalam memilih film yang ingin ditonton. Hal ini menciptakan kebutuhan akan sistem rekomendasi yang efisien, yang dapat membantu pengguna menemukan film berdasarkan preferensi pribadi mereka.
 
 ### Problem Statement
 Berdasarkan latar belakang diatas, proyek ini berfokus pada beberapa masalah utama yang perlu dipecahkan:
@@ -43,15 +43,14 @@ Data understanding dalam proyek sistem rekomendasi film melibatkan pengumpulan, 
 Dataset yang digunakan yaitu The Movies Dataset. Informasi dari dataset film ini dapata dilihat pada tabel berikut:
 | Jenis      | Keterangan     |
 | -----------------------     | ------------------------------------------------------------------------- |
-| Sumber                      | Dataset: [Kaggle](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset)  |
-| Dataset Owner               | Rounak Banik		                        |
+| Sumber                      | Dataset: [Kaggle](https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset)  |
+| Dataset Owner               | Manas Garg		                        |
 | Lisensi                     | CC0: Public Domain                        |
 | Kategori                    | Movies & TV Shows                         |
-| Usability                   | 8.24                                      |
-| Jenis dan Ukuran Berkas     | ZIP Version 7 (943.76 MB)                 |
-| Jumlah File Dataset         | 7 File (CSV)                              |
+| Jenis dan Ukuran Berkas     | ZIP Version 7 (866 KB)                 |
+| Jumlah File Dataset         | 2 File (CSV)                              |
 
-Dari informasi tabel diatas terlihat bahwa file-filenya berisi metadata untuk seluruh 45.000 film yang tercantum dalam Kumpulan Data Full MovieLens. Kumpulan data ini terdiri dari film-film yang dirilis pada atau sebelum Juli 2017. Poin data mencakup pemeran, kru, kata kunci plot, anggaran, pendapatan, poster, tanggal rilis, bahasa, perusahaan produksi, negara, jumlah suara TMDB, dan rata-rata suara.
+Dari informasi tabel di atas, dapat dilihat bahwa file-file dalam dataset ini berisi metadata untuk seluruh film yang tercantum dalam Movie Recommender Dataset. Dataset ini mencakup film-film yang dirilis pada atau sebelum tahun 2017. Poin data yang tersedia mencakup informasi seperti pemeran, kru, kata kunci plot, anggaran, pendapatan, poster, tanggal rilis, bahasa, perusahaan produksi, negara, jumlah suara TMDB, dan rata-rata suara. Dataset ini memberikan gambaran menyeluruh tentang film-film yang ada dalam database, yang dapat digunakan untuk analisis lebih lanjut terkait rekomendasi film dan preferensi pengguna.
 
 Kumpulan data ini juga memiliki file yang berisi 26 juta rating dari 270.000 pengguna untuk seluruh 45.000 film. Ratingnya dalam skala 1-5 dan diperoleh dari situs resmi GroupLens. Berikut penjelasan dari penjelasan file-file dalam kumpulan data tersebut.
 

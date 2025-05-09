@@ -207,6 +207,7 @@ Proses ini bertujuan untuk menyiapkan data mentah agar dapat digunakan secara ef
     Dari hasil diatas, tidak ada data yg bernilai null sehingga aman untuk proses selanjutnya
 
 * **Menangani Duplikat Data (Duplicated Data)**
+  
     Pada tahap ini, akan dilakukan pengecekan data ganda serta menanganinya pada variabel dataset movies dan ratings. Setalah dilakukan pengecekan kedua data juga hasil yang ditampilkan yakni 0 maka tidak ada duplikat data pada dataset movies dan ratings
   
 ### Data Preprocessing

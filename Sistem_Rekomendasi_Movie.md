@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Aditia Prabowo
+![Screenshot (1646) 1](https://github.com/user-attachments/assets/f151c17f-7e42-408c-8c2c-5c07877a58f3)# Laporan Proyek Machine Learning - Aditia Prabowo
 
 ## Domain Proyek
 Kemajuan teknologi, terutama dalam bidang perangkat bergerak dan internet, telah menciptakan peluang besar bagi pengembangan sistem rekomendasi. Pengguna kini dapat mengakses berbagai platform streaming seperti Netflix, Disney+, dan Amazon Prime yang menawarkan ribuan film. Namun hal ini juga menimbulkan tantangan baru untuk menemukan film yang sesuai dengan selera mereka di antara banyaknya pilihan yang tersedia `[5]`. Untuk mengatasi masalah ini, sistem rekomendasi film dikembangkan sebagai solusi efektif. istem rekomendasi berfungsi untuk memberikan rekomendasi yang dipersonalisasi berdasarkan interaksi pengguna sebelumnya dan preferensi yang diungkapkan, sehingga memudahkan mereka dalam menentukan pilihan `[6]`. Teknologi ini telah menjadi elemen penting dalam meningkatkan pengalaman pengguna di platform digital. 
@@ -53,14 +53,29 @@ Dari informasi tabel di atas, dapat dilihat bahwa file-file dalam dataset ini be
 
 Kumpulan data ini juga memiliki file yang berisi 100836 rating dari 610 pengguna untuk seluruh 9742 film. Ratingnya dalam skala 1-5 dan diperoleh dari situs resmi GroupLens. Berikut penjelasan dari penjelasan file-file dalam kumpulan data tersebut.
 
-### Membaca Dataset
+### Membaca Dataset 
 Selanjutnya pada tahap ini dataset diatas akan disimpan pada variabel menggunakan fungsi pandas.read_csv. Hasilnya dapat ditampilkan pada gambar berikut:
 
-![Rincian File Dataset](https://github.com/user-attachments/assets/0870ef20-4978-4d30-a5d6-847d2d6aa956)
+**Movies Dataset**
 
-Hasil dari gambar diatas merupakan jumlah data dalam file-file dataset film.
+![Screenshot (1642)](https://github.com/user-attachments/assets/7a318ed8-e08d-48f6-92f1-3b5cd9cf43d6)
 
-Pada proyek ini, hanya menggunakan 2 file csv yaitu `ratings_small.csv` (variabel `ratings`) dan `movies_metadata.csv` (variabel `movies`). 
+Dalam gambar di atas kita dapat mengetahui bahwa data movies terdiri dari 3 kolom, Kolom-kolom tersebut antara lain:
+
+- movieId: ID unik untuk setiap film, yang digunakan juga dalam data rating (df_ratings).
+- title: Judul film beserta tahun rilis.
+- genres: Genre film yang dipisahkan dengan tanda pipe (|), misalnya: Comedy|Romance.
+
+**Ratings Dataset**
+
+![Screenshot (1643)](https://github.com/user-attachments/assets/65b19ebf-6845-47e5-a9e8-f49bdd1a6ab2)
+
+Dari gambar di atas, kita dapat mengetahui bahwa data ratings terdiri dari 4 kolom. Kolom-kolom tersebut antara lain:
+
+- userId: ID pengguna yang memberikan rating.
+- movieId: ID film (bisa di-join dengan df_movies).
+- rating: Nilai rating yang diberikan (skala 0.5 – 5.0).
+- timestamp: Waktu pemberian rating dalam format Unix Epoch (detik sejak 1 Jan 1970).
 
 ### Exploratory Data Analysis - EDA
 Analisis eksploratif data (EDA) adalah tahap penting dalam analisis data yang bertujuan untuk memahami dan mengeksplorasi karakteristik dataset sebelum melakukan analisis yang lebih mendalam. Dataset yang digunakan dalam proyek ini yaitu dataset fIlm yang dapat dijelaskan sebagai barikut: 
@@ -70,75 +85,71 @@ Pada tahap ini, akan dialkukan analisis statistik yang melibatkan variabel movie
 
 * **Deskripsi Variabel**
     Pada tahap ini akan ditampilkan deskripsi variabel yang digunakan yaitu:
-    *a. Ratings (ratings_small.csv)*
+  
+    *a. Movies*
     Deskripsi variabel ratings dapat dilihat pada gambari berikut:
-    ![dataset-ratings](https://github.com/user-attachments/assets/559f75c8-abca-4f8d-a0fa-b4d514bc605c)
-    Berdasarkan gambar diatas, variabel ratings terdiri dari 100004 baris dan 4 kolom yang dapat dijelaskan sebagai berikut:
+  
+    ![b](https://github.com/user-attachments/assets/087cac81-788a-4aa1-ae81-a9920305087d)
+
+    Dataset movies terdiri dari 9.742 baris dan 3 kolom yang dapat dijelaskan sebagai berikut:
 
     | Variabel                    | Keterangan     |
     | -----------------------     | ------------------------------------------------------------------------- |
-    | userId                      | ID unik untuk pengguna yang memberikan penilaian (rating). Ini digunakan untuk mengidentifikasi pengguna secara anonim.  |
     | movieId|ID unik untuk film yang dinilai oleh pengguna untuk mendapatkan informasi lebih detail tentang film tersebut.                                  |
-    | rating | Nilai yang diberikan oleh pengguna untuk film tertentu dengan skala 1 hingga 5, di mana angka yang lebih tinggi menunjukkan penilaian yang lebih positif. |
-    | timestamp                   | Waktu ketika penilaian diberikan, direpresentasikan dalam format UNIX timestamp (jumlah detik sejak 1 Januari 1970).   |
+    | title | Judul dari film yang ada dalam dataset |
+    | genre                 | Daftar genre film, seperti Action, Comedy, Drama. Biasanya berupa JSON atau daftar string   |
     
-    *b. Movies (movies_metadata.csv)*
+    *b. ratings *
     Deskripsi variabel movies dapat dilihat pada gambari berikut:
-    ![dataset-movies](https://github.com/user-attachments/assets/6bebf0ce-2e94-4b35-85e5-e5b858df8f20)
+
+    ![tipe_data_movies ](https://github.com/user-attachments/assets/2c2af7b3-e319-4841-8850-092f4cc242da)
+  
     Berdasarkan gambar diatas, dataset movies terdiri dari 100004 baris dan 24 kolom yang dapat dijelaskan sebagai berikut:
 
     | Variabel                    | Keterangan     |
     | -----------------------     | ------------------------------------------------------------------------- |
-    |adult        | Mengindikasikan apakah film tersebut untuk orang dewasa (adult content). Nilainya biasanya True atau False.|
-    |belongs_to_collection|Informasi tentang koleksi atau seri film tertentu yang mencakup film ini (misalnya, film dalam seri Harry Potter). Biasanya berupa JSON atau string deskriptif.|
-    |Budget|Anggaran produksi film dalam satuan mata uang (biasanya USD). Nilainya berupa angka.|
-    |genres|Daftar genre film, seperti Action, Comedy, Drama. Biasanya berupa JSON atau daftar string.|
-    |homepage|URL dari situs web resmi film tersebut.|
-    |id|ID unik untuk film, biasanya merujuk pada database film tertentu seperti TMDb.|
-    |imdb_id|ID unik dari film di IMDb (misalnya, tt1234567).|
-    |original_language|Bahasa asli film tersebut dalam format kode bahasa ISO 639-1 (misalnya, en untuk bahasa Inggris).|
-    |original_title|Judul asli film dalam bahasa produksinya.|
-    |overview|Judul asli film dalam bahasa produksinya.|
-    |popularity|Skor popularitas film berdasarkan sistem tertentu, sering dihitung menggunakan algoritma dari platform film.|
-    |poster_path|Path atau tautan menuju gambar poster film. Biasanya berupa path yang dapat digabungkan dengan URL dasar untuk akses.|
-    |production_companies|Informasi tentang perusahaan produksi film tersebut. Biasanya berupa JSON dengan nama dan ID perusahaan.|
-    |production_countries|Negara tempat film tersebut diproduksi. Biasanya berupa JSON dengan nama negara dan kode negara.|
-    |release_date|Tanggal rilis film (format: YYYY-MM-DD).|
-    |revenue|Pendapatan kotor yang diperoleh film (biasanya dalam USD).|
-    |runtime|Durasi film dalam menit.|
-    |spoken_languages|Bahasa yang digunakan dalam dialog film. Biasanya berupa JSON dengan nama dan kode bahasa.|
-    |status|Status rilis film (misalnya, Released, In Production).|
-    |tagline|Slogan atau frasa singkat yang biasanya digunakan untuk promosi film.|
-    |title|Judul utama film yang digunakan untuk promosi.|
-    |video|Mengindikasikan apakah ada video terkait film. Nilainya biasanya berupa True atau False.|
-    |vote_average|Nilai rata-rata yang diberikan oleh pengguna (misalnya dari IMDb atau TMDb) berdasarkan skala tertentu (biasanya 1-10).|
-    |vote_count|Jumlah suara atau ulasan yang diberikan untuk film tersebut.|
+    | userId        | ID unik untuk pengguna yang memberikan penilaian (rating). Ini digunakan untuk mengidentifikasi pengguna secara anonim.|
+    |movieId|ID unik untuk film yang dinilai oleh pengguna untuk mendapatkan informasi lebih detail tentang film tersebut|
+    |rating|Nilai yang diberikan oleh pengguna untuk film tertentu dengan skala 1 hingga 5, di mana angka yang lebih tinggi menunjukkan penilaian yang lebih positif.|
+    |timestamp|Waktu ketika penilaian diberikan, direpresentasikan dalam format UNIX timestamp|
 
 * **Melihat Informasi Tipe Data**
     Infromasi dari tipe data variabel dapat dilihat pada gambar berikut:
 
     *1. Variable movies*
-   ![tipe_data_movies ](https://github.com/user-attachments/assets/5ade6703-b64a-4e3c-8aab-5e5f42965c9f)
+  
+   ![tipe_data_movies ](https://github.com/user-attachments/assets/1101b319-1b88-46d1-94a4-cbec4c8a0588)
+  
     *2. Variabel ratings*
-   ![tipe_data_rating](https://github.com/user-attachments/assets/1da41dcc-34ea-4543-87ca-d983fad448f1)
-    Dapat dilihat pada informasi dataset **movies** 20 variable dengan tipe data object dan 4 variabel bertipe float64. Sedangkan pada informasi dataset **ratings** terdapat 1 variabel dengan tipe data float64 dan 3 variable dengan tipe data int64.
+
+   ![tipe_data_rating](https://github.com/user-attachments/assets/858e07b6-86e0-4fb6-9e98-cd7d0adcb46c)
+  
+    Dapat dilihat pada informasi dataset **movies** terdiri dari 2 variabel dengan tipe data object dan 1 variabel dengan tipe data int64, sedangkan untuk informasi dataset **ratings** terdiri dari 3 variabel dengan tipe data int64 dan 1 variabel dengan tipe data float64
 
 * **Menghitung Total Dataset**
-Pada tahap ini, jumlah variabel dataset movies sebanyak 45466 dan memiliki 5 kolom sedangkan jumlah variabel dataset ratings sebanyak 100004 dan memiliki 4 kolom.
+  
+![total datset](https://github.com/user-attachments/assets/a829b1e9-dad3-46cd-92be-d0de40052aef)
+
+Pada tahap ini, jumlah variabel dataset movies sebanyak 9742 dan memiliki 3 kolom sedangkan jumlah variabel dataset ratings sebanyak 100836 dan memiliki 4 kolom.
 
 * **Menghitung Total Data Unik**
     Jumlah rincian data unik dapat dilihat pada gambar berikut:
 
-    ![total_data_unik](https://github.com/user-attachments/assets/7434e8c2-574f-415c-9317-c00174cb9ade)
-    Dari hasil diatas terdapat 45436 film pada dataset movies, 9066 film pada dataset ratings dan 671 user pada dataset ratings
+    ![dataset unik](https://github.com/user-attachments/assets/5c92e544-da79-45cd-93d5-c1d4e548f8ae)
+
+    Dari hasil diatas terdapat 9742 film pada dataset movies, 9724 film pada dataset ratings dan 610 user pada dataset ratings
 
 * **Pengecekan *Outliers***
     Pada tahap ini, akan diperlihatkan statistik deskriptif dari dataset variabel df_movies dan ratings mengunakan fungsi `describe()`.
 
     *1. Variabel movies*
-    ![des_movies](https://github.com/user-attachments/assets/82b83bfb-2c0c-4c82-882b-bb0feda63a01)
+  
+    ![movie describe](https://github.com/user-attachments/assets/7998eaa1-cac1-4545-9f11-9ed5d36a2725)
+
     *2. Variabel ratings*
-    ![des_rating](https://github.com/user-attachments/assets/3ff035f5-9f5e-4f90-a641-043753e98149)
+
+    ![ratings describe](https://github.com/user-attachments/assets/14f0e2ff-95f4-4f2e-8388-619016104a4e)
+
     Berdasarkan tampilan deskriptif dataset movies dan ratings dapat dilihat tidak mencolok ada pesebaran nilai yang menimbulkan `outlier`.
 
 * **Distribusi Ratings**
@@ -148,145 +159,152 @@ Pada tahap ini, jumlah variabel dataset movies sebanyak 45466 dan memiliki 5 kol
     * Membantu memahami pola preferensi pengguna.
 
     Tampilan distribusi rating dapat dilihat pada gambar berikut:
-    ![distribusi-rating](https://github.com/user-attachments/assets/2d61d465-c467-4d81-8be9-f91d5297a698)
-    Berdasarkan diagram plot rating diatas, dapat dilihat bahwa nilai ratings paling umum diberikan pengguna adalah rating 4.0 dengan presentasi 28.7%, rating 3.0 dengan presentasi 20.1%, rating 5.0 dengan prestansi 15.1%. Sedangkan nilai rating yang lain berada dibawah pada presentasi 12.0%
 
-* **Distribusi Gengres**
+    ![grafik ratings](https://github.com/user-attachments/assets/13b9ea09-3521-4bd2-b6c7-ee6fa1f3921d)
+  
+    Berdasarkan diagram plot rating diatas, dapat dilihat bahwa nilai ratings paling umum diberikan pengguna adalah rating 4.0 dengan presentasi 286.6%, rating 3.0 dengan presentasi 19.9%, rating 5.0 dengan prestansi 13.1%. rating 3.5 dengan presentasi 13.0%, sedangkan nilai rating yang lain berada di bawah pada presentasi 12.0%
+
+* **Distribusi Gengre**
     Distribusi genre film adalah aspek penting dalam sistem rekomendasi, karena membantu memahami preferensi pengguna dan pola konsumsi film. Pada proyek ini menggunakan metode visualisasi Data dalam menampilkan grafik batang yang menggambarkan proporsi masing-masing genre secara visual, sehingga memudahkan pemahaman. Pada tahap ini akan dilakukan membersihkan, memproses, dan menormalkan data dalam kolom genres pada DataFrame df_movies Ada beberapa fungsi yang dipakai yakni:
-    * `fillna('[]')`, berfungsi untuk mengisi nilainull atau NaN dalam kolom genres dengan string kosong dalam format list (`[]`).
-    * `apply(literal_eval)`, fungsi literal_eval dari pustaka ast untuk mengubah string yang terlihat seperti Python literal menjadi tipe data list.
-    * `apply(lambda x: [i['name'] for i in x] if isinstance(x, list) else []`, fungsi lambda ini memproses setiap nilai dalam kolom genres: Jika nilai adalah sebuah daftar
-    * `(isinstance(x, list))`, maka ambil nilai dari kunci name untuk setiap elemen. Jika nilai bukan daftar, mengembalikan daftar kosong (`[]`).
+    * `fillna('')`, berfungsi untuk mengisi nilai null atau NaN dalam kolom genres dengan string kosong ('').
+    * `apply(lambda x: x.split('|') if x else [])`, fungsi lambda ini memisahkan string genre berdasarkan tanda | menjadi list. Jika datanya kosong, akan dikembalikan list kosong [].
     
     Selanjutanya, ubah setiap elemen dalam daftar (genre) menjadi baris terpisah dengan fungsi `explode()`, kemudian menghitung jumlah kemunculan setiap genre dengan fungsi `value_counts()` dan terakhir membuat diagram batang untuk menampilkan distribusi genre dengan plot bar `plot(kind='bar')`. Langkah pertama, buat variabel dataframe baru untuk melakukan analisis visualisasi data. Kemudian konversi fitur(variabel) genres ke dalam bentuk list sehingga dapat dianalisi. Berikut adalah gambar distribrusi genres menggunakan grafik bar.
 
-    ![genres_distribusi](https://github.com/user-attachments/assets/119090a5-1781-4afa-bb8f-041d7c4170b0)
-    Dari gambar grafik diatas, dapat dilihat bahwa genre Drama dan Comedy paling banyak tersebar pada setiap film dalam dataset dengan jumah sebesar 20265 dan 13182. Sedangkan genre yang lain berada dibawah 10000. Terlihat juga ada 12 genre dengan jumlah 1.
+    ![download](https://github.com/user-attachments/assets/3b79aa72-cb7e-483e-b572-8293e3d899a6)
 
-* **Analisis Daftar Film dengan Skor Tertinggi di Seluruh Rentang Film**
-    Untuk membuat daftar film dengan skor tertinggi menggunakan metode Weighted Score. Metode ini merupakan perhitungan skor berbobot untuk menggabungkan nilai-nilai yang berbeda berdasarkan pentingnya masing-masing komponen. Dalam konteks film, perlu menghitung skor berbobot berdasarkan informasi yang tersedia, seperti rata-rata penilaian (`vote_average`), jumlah suara (`vote_count`), dan jumlah suara rata-rata minimum yang diperlukan untuk dipertimbangkan dalam daftar.
-    Keterangan:
-    `v` = jumlah suara untuk film tertentu (vote_count)
-    `m` = jumlah suara minimum untuk masuk ke daftar (threshold)
-    `R` = rata-rata skor film tersebut (vote_average)
-    `C` = rata-rata skor semua film dalam dataset (rata-rata global)
-
-    Hasilnya dapat dilihat pada gambar berikut:
-    ![analisis_top_rating_movies](https://github.com/user-attachments/assets/48127eca-ba1a-4fa8-b4b3-4c9645481459)
-    Gambar diatas menunjukan 5 film dengan skor tertinggi yang diberikan oleh pengguna. Dapat dilihat film dengan judul _Dilwale Dulhania Le Jayenge_	memiliki skor tertiggi yaitu 8.929668.
+    Dari grafik diatas, dapat dilihat bahwa genre Drama dan Comedy paling banyak tersebar pada setiap film dalam dataset dengan jumah sebesar 4361 dan 3756. Sedangkan genre yang jumlahnya dibawahnya ada Thriller dengan 1894,Action dengan 1828,Romance dengan 1596,Adventure dengan 1263,Crime dengan 1199, selain itu 12 yang lain di bawah 1000
 
 * **Analisis Rating Tertinggi**
     Selanjutnya gabungkan dataset df_movies dan ratings dengan fungsi pandas `pd.merge` dan mencari 10 film dengan rating tertinggi. Alisis rating tertinggi dapat dilihat pada gambar berikut:
 
-    ![10-analisis rating](https://github.com/user-attachments/assets/257800b2-4b5e-4ecc-8598-3c679031faca)
-    Dapat dilihat pada gambar diatas dari 10 rating tertinggi film yang ada, film dengan judul _Terminator 3: Rise of the Machines_ memiliki rating teratas dengan *mean rating* 4.256 dan total rating sebanyak 324.
+    ![rating hight](https://github.com/user-attachments/assets/4797880a-d123-4ea9-b9d2-a3f88b8f7ab2)
+
+    Dapat dilihat pada gambar diatas dari 10 rating tertinggi film yang ada, film dengan judul Forrest Gump memiliki rating teratas dengan mean rating 4.164 dan total rating sebanyak 329
 
 * **Membandingkan Peringkat rata-rata vs Jumlah total peringkat**
     Pada tahap ini akan dibandingkan rata-rata rangkin dan total rangking menggunakan `joinplot` untuk melihat pesebaran data yang dapat dilihat pada gambari dibawah ini:
 
-    ![mean vs total rating](https://github.com/user-attachments/assets/336ee099-c9a0-4fbb-b4be-00c80b0048a9)
-    Berdasarkan grafik pesebaran data diatas total rating terting berada diatas 250 sebanyak 5 film, sadangkan rata-rata terbanyak pengguna memberi rating terhadap film berada diretang nilai 2 - 4.5 rating.
-
+    ![cihuy pisan](https://github.com/user-attachments/assets/d8530e60-98b8-43d6-ab23-fd545f4a647c)
+  
+    Berdasarkan grafik pesebaran data diatas total rating tertinggi berada diatas 250 sebanyak 5 film, sadangkan rata-rata terbanyak pengguna memberi rating terhadap film berada diretang nilai 2 - 4.5 rating.
+  
 ## Data Preparation
 Data preparation adalah langkah penting dalam pengembangan sistem rekomendasi film yang efektif. Proses ini mencakup beberapa tahap, mulai dari pengumpulan data hingga pemrosesan akhir sebelum data digunakan dalam model machine learning. 
 
 ###  Data Cleaning
 Proses ini bertujuan untuk menyiapkan data mentah agar dapat digunakan secara efektif dalam model machine learning. Setelah data terkumpul ada beberapa langkah yang perlu lakukan dalam tahap ini yaitu:
 
-* **Mengambil Fitur Sesuai Kebutuhan**
-    Pada pronyek ini, dataset *movies_metadata (movies)*  hanya mengambil beberapa fitur atau kolom sesuai kebutuhan analsis pengolahan data yakni `['id', 'genres', 'title', 'vote_average', 'vote_count']`. Fitur-fitur tersebut dapat dilihat pada gambar di bawah ini yang menampilkan 5 data pada setiap fitur
-    
-    ![ambil_fitur_sesuai_kebutuhan](https://github.com/user-attachments/assets/e2f19108-10f3-4c33-828e-ea29e101fafb)
-
-* **Menyesuaikan Tipe Data Primary Key dan Foregein Key**
-    Pada tahap ini, perlu menyesuaikan tipe data `primary key` dan `foregein key`. Jika dilihat pada informasi sebelumnya, dataset movies atribut id (`primary key`) dengan type data `object` berbeda pada dataset ratings atribut `movieId` dengan type data `int64`. Oleh karena itu, perlu menyamakan tipe data tersebut dengan cara menyamakan nama atribut movieId dan tipe data `int64`.
-
 * **Menangani Nilai Kosong (Missing Value)**
     Pada tahap ini, akan dilakukan pengecekan nilai kosong serta menanganinya pada variabel dataset movies dan ratings. Hasilnya dapat dilihat pada gambar berikut:
 
-    ![nilai_null_movies](https://github.com/user-attachments/assets/fbf0fcb0-e41e-49a5-8cd7-bf742b4e6190)
-    Dari gambar diatas, nilai null terdapat pada variabel `title`, `vote_average` dan `vote_count` memiliki nilai null = 3.
-    ![ratings_null](https://github.com/user-attachments/assets/4355e5ff-3740-492c-95a2-08c7db0490d1)
-    Dari gambar diatas terlihat variabel dataset ratings tidak memiliki nilai null.
-    Selanjutnya hapus jumlah data dengan nilai null, karena sangat sedikit dan tidak signifikan dibandingkan keseluruhan dataset.
+    ![clean movie](https://github.com/user-attachments/assets/6873aa9a-c63b-4439-b66e-469675996248)
+
+    Dari gambar diatas, tidak ada data yang bernilai null sehingga aman untuk proses selanjutnya
+  
+    ![ratings clean](https://github.com/user-attachments/assets/854f61dd-283c-4927-b94b-e26782233f17)
+  
+    Dari hasil diatas, tidak ada data yg bernilai null sehingga aman untuk proses selanjutnya
 
 * **Menangani Duplikat Data (Duplicated Data)**
-    Pada tahap ini, akan dilakukan pengecekan data ganda serta menanganinya pada variabel dataset movies dan ratings. Setalah dilakukan pengecekan terdapat 28 data ganda pada variabel dataset movies dan tidak ada data ganda pada variabel dataset ratings. Terakhir lakukan penghapusan data ganda pada variabel dataset movies.
-
+    Pada tahap ini, akan dilakukan pengecekan data ganda serta menanganinya pada variabel dataset movies dan ratings. Setalah dilakukan pengecekan kedua data juga hasil yang ditampilkan yakni 0 maka tidak ada duplikat data pada dataset movies dan ratings
+  
 ### Data Preprocessing
 Proses ini bertujuan untuk menyiapkan data mentah agar dapat digunakan secara efektif dalam model machine learning. Langkah-langkah yang dilakukan dalam proyak ini yaitu:
 * **Mengurutkan Pengguna dan Film berdasarkan ID**
     Pada tahap ini, akan dilakukan pengurutan data berdasarkan userId pada variabel dataset ratings dan movieId pada variabel dataset df_movies. Hasilnya dapat dilihat pada gambar berikut:
-      * Pengurutan data berdasarkan userId pada dataset ratings
-        ![short_userId](https://github.com/user-attachments/assets/0b8c5226-eee4-4b63-a88f-5e90b09d6b83)
 
-      * Pengurutan data berdasarkan movieId pada dataset df_movies
-        ![short_movieId](https://github.com/user-attachments/assets/867e5f66-3f96-45fc-9253-21f336001286)
+  *Pengurutan data berdasarkan userId pada dataset ratings
+
+  ![encang](https://github.com/user-attachments/assets/2313653e-52c5-443d-aac0-63768f604cc8)
+
+  * Pengurutan data berdasarkan movieId pada dataset df_movies
+    
+    ![urutkan data](https://github.com/user-attachments/assets/42358e8d-06d4-440c-af0b-77abe2e6075c)
 
 * **Mengubah fitur genres movie ke bentuk list**
     Pada tahap ini, fitur genres pada variabel dataset df_movies masih dalam bentuk format json, maka perlu diubah kedalam bentuk list sehingga dapat dilakukan dalam proses pelatihan model. Hasilnya dapat dilihat pada gambar berikut:
-    ![list_genres](https://github.com/user-attachments/assets/c5a846a2-9c2f-40b5-b758-c105560ff837)
+
+   ![genre movie](https://github.com/user-attachments/assets/0c91891e-5d37-4b1e-84cb-753b741d31d1)
 
 * **Melakukan penggabungan dataset df_movies dan ratings** 
     Selanjutnya akan dilakukan penggabungan dataset variabel df_movies dan ratings menggunkan fungsi `inner` melalui fitur movieId. Hasilnya dapat dilihat pada gambar berikut:
-    ![df_ratings_movies](https://github.com/user-attachments/assets/6328a7dc-cdd7-4b2d-a4fb-8bed6562918b)
 
+    ![merge data](https://github.com/user-attachments/assets/9c14432c-3e7c-47d0-aa17-c07a77a78586)
+    
 * **Menghapus fitur yang tidak diperlukan**
-    Langkah selanjutnya, melakukan penghapusan fitur-titru yang tidak diperlukan dalam proses pelathan model nanti yakni fitur *timestamp*, *vote_average* dan *vote_count*. Hasilnya dapat dilihat pada gambar berikut:
-    ![hapus_fitur](https://github.com/user-attachments/assets/6c1294a2-9b75-4efb-b3a6-e6ad876821b9)
+    Langkah selanjutnya, melakukan penghapusan fitur-titru yang tidak diperlukan dalam proses pelathan model nanti yakni fitur *timestamp*. Hasilnya dapat dilihat pada gambar berikut:
+  
+    ![drop fitur](https://github.com/user-attachments/assets/9f6ecb2d-bee5-40be-a1b2-98f006b31f68)
 
     Hasil gambar diatas menunjukan 10 data gabungan movies dan ratings, dimana fitur genre sudah menjadi bentuk list dan diurutkan berdasarkan *userId*.
 
 * **Mengambil 20000 dataset secara acak**
     Selanjutnya diambil 20000 gabugan dataset variabel df_movies dan ratings menggunakan fungsi `shuffle` dari library `sklearn.utils` untuk memperoleh data secara acak dengan tujuan mempermudah pengolahan dan mencegah crash. Hasilnya dapat dilihat pada gambar berikut:
-    ![dataset-20000-acak](https://github.com/user-attachments/assets/4056dd1e-ca02-4de4-a9bc-34b46962c228)
 
-    Pada gambar diatas terdapat 20000 baris dan 5 kolom yakni *userId*, *movieId*, *rating*, *genres* dan *title*.
+   ![mengambil dataset](https://github.com/user-attachments/assets/43e3810a-0750-464f-9db9-c69fa506d051)
+  
+    Pada gambar diatas terdapat 20000 baris dan 5 kolom yakni *userId*, *movieId*, *rating*, *title* dan *genres*.
 
 ### Content-Based Filtering
 Content-Based Filtering adalah metode dalam sistem rekomendasi yang memberikan rekomendasi berdasarkan karakteristik atau konten dari item yang telah disukai atau dinilai oleh pengguna. Teknik yang digunakan yaitu teknik `TF-IDF` (Term Frequency-Inverse Document Frequency) untuk menentukan bobot fitur dan menghitung kesamaan antara item dalam hal ini adalah `genres`.
 
 Berikutnya, lanjutkan ke tahap persiapan dengan membuat variabel preparation yang berisi dataframe df_sample_final yang dapat dilihat pada gambar berikut ini:
-![data_preparation](https://github.com/user-attachments/assets/c8f1c6d6-0ee7-4e89-8522-dbe823d39d2d)
+
+![content base](https://github.com/user-attachments/assets/74299d24-faff-41b6-8392-0051ac1899a7)
 
 Kemudian mengurutkan berdasarkan movieId. Hasilnya dpat dilihat pada gambar berikut:
-![data_preparation-oke](https://github.com/user-attachments/assets/6274052a-70c7-4057-9168-a1541f167b31)
 
-Selanjutnya, lakukan konversi data series menjadi list. Dalam hal ini, menggunakan fungsi `tolist()` dari library `numpy`. Setelah konversi dilakukan diperoleh variabel `movieId`, `movie_name`, `movie_genres` dan `title` dengan jumlah masing-masing sebanyak 2249.
+
+![urut movie](https://github.com/user-attachments/assets/68a0c2f2-ba2c-4dc9-a311-aefe5c3bf13a)
+
+Selanjutnya, lakukan konversi data series menjadi list. Dalam hal ini, menggunakan fungsi `tolist()` dari library `numpy`. Setelah konversi dilakukan diperoleh variabel `movieId`, `movie_name`, `movie_genres` dan `title` dengan jumlah masing-masing sebanyak 5189.
 
 Tahap terakhir, membuat dictionary untuk menentukan pasangan `key-value` pada data `movie_id`, `movie_name` dan `movie_genres` yang telah siapkan sebelumnya. Hasilnya dapat dilihat pada gambar berikut:
-![movies_new](https://github.com/user-attachments/assets/c0cffc9b-1c3e-47bd-bf48-bf593ee693fd)
 
-Selanjutnya, gunakan fungsi `TfidfVectorizer` untuk mengkonversi `genres`. Namun sebelum itu genres perlu dikonversi dari list ke siting akar dapay diproses.
-![TfidfVectorizer_Genre](https://github.com/user-attachments/assets/b2d91377-89ce-4d14-9320-1ca8bb81bd35)
+![dictionory](https://github.com/user-attachments/assets/5d1612ce-83ed-40a0-a91c-b4c281397426)
 
-Setelah mendapat index seluruh genre film, akan difit lalu ditransformasikan ke bentuk matriks sehingga diperoleh ukuran (2209, 22) serta mengubah vektor tf-idf dalam bentuk matriks dengan fungsi todense(). Hasilnya dapat dilihat pada gambar berikut:
-![matriks-todense](https://github.com/user-attachments/assets/117ea224-6b56-4004-be29-7522186e3aa3)
+Selanjutnya, gunakan fungsi `TfidfVectorizer` untuk mengkonversi `genres`. Namun sebelum itu genres perlu dikonversi dari list ke string akar dapay diproses.
+
+![list to string](https://github.com/user-attachments/assets/5c38854e-3846-4166-b9d5-66675fd0e283)
+
+Setelah mendapat index seluruh genre film, akan difit lalu ditransformasikan ke bentuk matriks sehingga diperoleh ukuran (5189, 24) serta mengubah vektor tf-idf dalam bentuk matriks dengan fungsi todense(). Hasilnya dapat dilihat pada gambar berikut:
+
+![todense](https://github.com/user-attachments/assets/a911f0b5-bfb9-4624-a251-1d7300a10e6f)
 
 Setelah dibentuk matriks, dibuat tabel berisi judul film beserta genrenya berdasarkan TF-IDF yang telah diinisiasi. Hasilnya dapat dilihat pada gambar berikut:
-![tf-idf-inisialisasi](https://github.com/user-attachments/assets/1df15f7b-d5f4-4924-8c07-87a7f34fd7ed)
+
+![judul film](https://github.com/user-attachments/assets/3b4510e1-3907-4b40-af4d-bf356e736455)
 
 ### Collaborative Filtering (CF)
 Pada tahap ini data prerataion CF, Langkah pertama, cek dataset dengan fungsi `info()`, hasilnya ditampilkan pada gambar berikut:
-![sampel_final](https://github.com/user-attachments/assets/f3083afc-7726-40d1-92c9-edd5e6ec6c66)
 
-Dari hasil diatas, terdapat 20000 baris dan 5 kolom dan memiliki 1 tipe data `float64`, 2 tipe data `int64` dan 2 tipe data `object`. Langkah kedua Kedua, hapus kolom yang tidak dibutuhkan dalam pelatihan yaitu `genres` dan `title`. Langkah berikutnya, urutkan berdasarkan kolom `userId` untuk  masuk pada tahap encoding `userId` dan `movieId`.
+![colaborative](https://github.com/user-attachments/assets/d609a3d4-b9e0-464f-9644-05c3cde9d103)
+
+Dari hasil diatas, terdapat 20000 baris dan 5 kolom dan memiliki 1 tipe data float64, 2 tipe data int64 dan 2 tipe data object. Langkah kedua Kedua, hapus kolom yang tidak dibutuhkan dalam pelatihan yaitu `genres` dan `title`. Langkah berikutnya, urutkan berdasarkan kolom `userId` untuk  masuk pada tahap encoding `userId` dan `movieId`.
 
 * **Encoding userId dan movieId**
     Pada tahap ini, akan dilakukan encoding pada `userId` dan `movieId`. Hasilnya dapat ditampilkan pada gamabr dibwah ini:
     1. Encoding *userId*
-    ![encoding-userId](https://github.com/user-attachments/assets/27480e28-4989-4924-a6ad-79b74b46005b)
+       
+    ![encode](https://github.com/user-attachments/assets/78df2888-83d0-4673-9a29-4d73996ceb73)
 
     2. Encoding *movieId*
-    ![encoding-movieId](https://github.com/user-attachments/assets/a97e82cb-f8b3-48f8-b0bc-079eecd74244)
 
-    Selanjutnya ambil total_user, total movie dan nilai rating minimum dan maksimum untuk proses pembagian dataset sebelum melakukan pelatihan model. Hasilnya diperoleh yaitu 669 pengguna, 2249 film serta nilai rating minimum sebesar 0.5 dan maksimum sebesar 5.0.
+    ![encode movie](https://github.com/user-attachments/assets/b6bbce41-7e45-4d05-a4fa-0e55d2ee9e99)
+
+    Selanjutnya ambil total_user, total movie dan nilai rating minimum dan maksimum untuk proses pembagian dataset sebelum melakukan pelatihan model. Hasilnya diperoleh yaitu 610 pengguna, 5189 film serta nilai rating minimum sebesar 0.5 dan maksimum sebesar 5.0.
 
 * **Membagi Data untuk Training dan Validasi**
     Pada tahap ini, data training dan data validasi dibagi untuk proses pelatihan model. Namun sebelum itu, perlu mengacak dataset sehingga menjadi data yang valid. Hasilnya seperti pada gambar berikut:
-    ![data-acak-uji](https://github.com/user-attachments/assets/46d939ac-66ee-47fc-a0b7-fe7dcced203d)
+
+    ![Training dan Validasi](https://github.com/user-attachments/assets/e25958d4-4a8a-4574-b2c8-164e725f773f)    
 
     Selanjutnya, buat variabel x untuk mencocokkan data user dan Movie menjadi satu value, kemudian variabel y untuk membuat rating dari hasil. Terakhir,  bagi menjadi `80%` data train dan `20%`` data validasi.
+
+
++++++++++++++++++++++++++++++++Istirahat+++++++++++++++++++++++++++++++++
+
 
 ## Modeling and Result
 Pada tahap ini ada dua model yang dipakai untuk dilatih, di evaluasi dan memberikan rekomendasi kepada pengguna film. Kedua model tersebut dapat dijelaskan sebagai berikut:

@@ -45,26 +45,13 @@ Dataset yang digunakan yaitu The Movies Dataset. Informasi dari dataset film ini
 | -----------------------     | ------------------------------------------------------------------------- |
 | Sumber                      | Dataset: [Kaggle](https://www.kaggle.com/datasets/gargmanas/movierecommenderdataset)  |
 | Dataset Owner               | Manas Garg		                        |
-| Lisensi                     | CC0: Public Domain                        |
 | Kategori                    | Movies & TV Shows                         |
 | Jenis dan Ukuran Berkas     | ZIP Version 7 (866 KB)                 |
 | Jumlah File Dataset         | 2 File (CSV)                              |
 
-Dari informasi tabel di atas, dapat dilihat bahwa file-file dalam dataset ini berisi metadata untuk seluruh film yang tercantum dalam Movie Recommender Dataset. Dataset ini mencakup film-film yang dirilis pada atau sebelum tahun 2017. Poin data yang tersedia mencakup informasi seperti pemeran, kru, kata kunci plot, anggaran, pendapatan, poster, tanggal rilis, bahasa, perusahaan produksi, negara, jumlah suara TMDB, dan rata-rata suara. Dataset ini memberikan gambaran menyeluruh tentang film-film yang ada dalam database, yang dapat digunakan untuk analisis lebih lanjut terkait rekomendasi film dan preferensi pengguna.
+Dari informasi tabel di atas, dapat dilihat bahwa file-file dalam dataset ini berisi metadata untuk seluruh film yang tercantum dalam Movie Recommender Dataset. Dataset ini mencakup film-film yang sduah tayang. Poin data yang tersedia mencakup informasi seperti moveId, taitlel, genre. Dataset ini memberikan gambaran menyeluruh tentang film-film yang ada dalam database, yang dapat digunakan untuk analisis lebih lanjut terkait rekomendasi film dan preferensi pengguna.
 
-Kumpulan data ini juga memiliki file yang berisi 100836 rating dari 270.000 pengguna untuk seluruh 9742 film. Ratingnya dalam skala 1-5 dan diperoleh dari situs resmi GroupLens. Berikut penjelasan dari penjelasan file-file dalam kumpulan data tersebut.
-
-*movie_metadata.csv*: File Metadata Film utama. Berisi informasi tentang 45.000 film yang ditampilkan dalam kumpulan data Full MovieLens. Fitur-fiturnya meliputi poster, latar belakang, anggaran, pendapatan, tanggal rilis, bahasa, negara produksi, dan perusahaan.
-
-*keywords.csv*: Berisi kata kunci plot film untuk film MovieLens kami. Tersedia dalam bentuk Objek JSON yang dirangkai.
-  
-*credits.csv*: Terdiri dari Informasi Pemeran dan Kru untuk semua film kami. Tersedia dalam bentuk Objek JSON yang dirangkai.
-  
-*links.csv*: File yang berisi ID TMDB dan IMDB dari semua film yang ditampilkan dalam kumpulan data Full MovieLens.
-  
-*links_small.csv*: Berisi ID TMDB dan IMDB dari sebagian kecil 9.000 film dari Kumpulan Data Lengkap.
-  
-*rating_small.csv*: Bagian dari 100.000 rating dari 700 pengguna pada 9.000 film.
+Kumpulan data ini juga memiliki file yang berisi 100836 rating dari 610 pengguna untuk seluruh 9742 film. Ratingnya dalam skala 1-5 dan diperoleh dari situs resmi GroupLens. Berikut penjelasan dari penjelasan file-file dalam kumpulan data tersebut.
 
 ### Membaca Dataset
 Selanjutnya pada tahap ini dataset diatas akan disimpan pada variabel menggunakan fungsi pandas.read_csv. Hasilnya dapat ditampilkan pada gambar berikut:

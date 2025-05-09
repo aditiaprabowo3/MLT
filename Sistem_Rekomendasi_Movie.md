@@ -52,7 +52,7 @@ Dataset yang digunakan yaitu The Movies Dataset. Informasi dari dataset film ini
 
 Dari informasi tabel di atas, dapat dilihat bahwa file-file dalam dataset ini berisi metadata untuk seluruh film yang tercantum dalam Movie Recommender Dataset. Dataset ini mencakup film-film yang dirilis pada atau sebelum tahun 2017. Poin data yang tersedia mencakup informasi seperti pemeran, kru, kata kunci plot, anggaran, pendapatan, poster, tanggal rilis, bahasa, perusahaan produksi, negara, jumlah suara TMDB, dan rata-rata suara. Dataset ini memberikan gambaran menyeluruh tentang film-film yang ada dalam database, yang dapat digunakan untuk analisis lebih lanjut terkait rekomendasi film dan preferensi pengguna.
 
-Kumpulan data ini juga memiliki file yang berisi 26 juta rating dari 270.000 pengguna untuk seluruh 45.000 film. Ratingnya dalam skala 1-5 dan diperoleh dari situs resmi GroupLens. Berikut penjelasan dari penjelasan file-file dalam kumpulan data tersebut.
+Kumpulan data ini juga memiliki file yang berisi 100836 rating dari 270.000 pengguna untuk seluruh 9742 film. Ratingnya dalam skala 1-5 dan diperoleh dari situs resmi GroupLens. Berikut penjelasan dari penjelasan file-file dalam kumpulan data tersebut.
 
 *movie_metadata.csv*: File Metadata Film utama. Berisi informasi tentang 45.000 film yang ditampilkan dalam kumpulan data Full MovieLens. Fitur-fiturnya meliputi poster, latar belakang, anggaran, pendapatan, tanggal rilis, bahasa, negara produksi, dan perusahaan.
 

@@ -472,7 +472,7 @@ Berdasarkan hasil yang diperoleh setelah melakukan proses pengolahan data sampai
    
 2. Neural Network: Cikal Bakal Revolusi Deep Learning. Tersedia: [Tautan](https://www.dicoding.com/blog/neural-network-cikal-bakal-revolusi-deep-learning/). Diakses pada: mei 2025.
    
-3. Perbedaan MAE, MSE, RMSE, dan MAPE pada Data Science. Tersedia: [Tautan]([https://pages.github.com/](https://www.trivusi.web.id/2023/03/perbedaan-mae-mse-rmse-dan-mape.html)). Diakses pada: Desember 2025.
+3. Perbedaan MAE, MSE, RMSE, dan MAPE pada Data Science. Tersedia: [Tautan]([https://pages.github.com/](https://www.trivusi.web.id/2023/03/perbedaan-mae-mse-rmse-dan-mape.html)). Diakses pada: Mei 2025.
    
 4. Firmansyah Fataruba, "PENGUKURAN KEMIRIPAN DOKUMEN TEKS BAHASA INDONESIA MENGGUNAKAN METODE COSINE SIMILARITY," E-Journal Teknik Informatika Volume 9, No 1 (2016), ISSN : 2301-8364, vol. IX, pp. 1-8, 2016. "PENERAPAN METODE COSINE SIMILARITY UNTUK PENGECEKAN KEMIRIPAN JAWABAN UJIAN SISWA", JATI (Jurnal Mahasiswa Teknik Informatika) Vol. 2  No. 2, September 2018.
  
@@ -480,4 +480,4 @@ Berdasarkan hasil yang diperoleh setelah melakukan proses pengolahan data sampai
    
 6. Salim .E, Paragantha. J, Lauro M, "Perancangan Sistem Rekomendasi Film menggunakan metode Contentbased Filtering" (Paper, Jurusan Teknik Informatika, Fakultas Teknologi Informasi, Universitas Tarumanagara: Jakarta Barat).
    
-7. Metrik Evaluasi. Tersedia: [Tautan](https://learn.microsoft.com/id-id/azure/ai-services/language-service/custom-text-classification/concepts/evaluation-metrics). Diakses pada: December 2024.
+7. Metrik Evaluasi. Tersedia: [Tautan](https://learn.microsoft.com/id-id/azure/ai-services/language-service/custom-text-classification/concepts/evaluation-metrics). Diakses pada: Mei 2025.

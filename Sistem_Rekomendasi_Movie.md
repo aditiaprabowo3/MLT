@@ -219,7 +219,7 @@ Proses ini bertujuan untuk menyiapkan data mentah agar dapat digunakan secara ef
   
     Pada tahap ini, akan dilakukan pengurutan data berdasarkan userId pada variabel dataset ratings dan movieId pada variabel dataset df_movies. Hasilnya dapat dilihat pada gambar berikut:
 
-  *Pengurutan data berdasarkan userId pada dataset ratings
+  * Pengurutan data berdasarkan userId pada dataset ratings
 
   ![encang](https://github.com/user-attachments/assets/2313653e-52c5-443d-aac0-63768f604cc8)
 

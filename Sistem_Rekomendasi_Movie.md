@@ -78,15 +78,19 @@ Dari gambar di atas, kita dapat mengetahui bahwa data ratings terdiri dari 4 kol
 - timestamp: Waktu pemberian rating dalam format Unix Epoch (detik sejak 1 Jan 1970).
 
 ### Exploratory Data Analysis - EDA
+
 Analisis eksploratif data (EDA) adalah tahap penting dalam analisis data yang bertujuan untuk memahami dan mengeksplorasi karakteristik dataset sebelum melakukan analisis yang lebih mendalam. Dataset yang digunakan dalam proyek ini yaitu dataset fIlm yang dapat dijelaskan sebagai barikut: 
 
 **1. Univariate Analysis**
+
 Pada tahap ini, akan dialkukan analisis statistik yang melibatkan variabel movies dan ratings untuk melihat distribusi, pola, dan karakteristik data tersebut serta menggunakan grafik untuk menggambarkan distribusi genre dan rating film, serta hubungan antara fitur-fitur dalam dataset.
 
 * **Deskripsi Variabel**
+  
     Pada tahap ini akan ditampilkan deskripsi variabel yang digunakan yaitu:
   
     *a. Movies*
+  
     Deskripsi variabel ratings dapat dilihat pada gambari berikut:
   
     ![b](https://github.com/user-attachments/assets/087cac81-788a-4aa1-ae81-a9920305087d)
@@ -100,6 +104,7 @@ Pada tahap ini, akan dialkukan analisis statistik yang melibatkan variabel movie
     | genre                 | Daftar genre film, seperti Action, Comedy, Drama. Biasanya berupa JSON atau daftar string   |
     
     *b. ratings *
+  
     Deskripsi variabel movies dapat dilihat pada gambari berikut:
 
     ![tipe_data_movies ](https://github.com/user-attachments/assets/2c2af7b3-e319-4841-8850-092f4cc242da)
@@ -114,6 +119,7 @@ Pada tahap ini, akan dialkukan analisis statistik yang melibatkan variabel movie
     |timestamp|Waktu ketika penilaian diberikan, direpresentasikan dalam format UNIX timestamp|
 
 * **Melihat Informasi Tipe Data**
+  
     Infromasi dari tipe data variabel dapat dilihat pada gambar berikut:
 
     *1. Variable movies*
@@ -133,6 +139,7 @@ Pada tahap ini, akan dialkukan analisis statistik yang melibatkan variabel movie
 Pada tahap ini, jumlah variabel dataset movies sebanyak 9742 dan memiliki 3 kolom sedangkan jumlah variabel dataset ratings sebanyak 100836 dan memiliki 4 kolom.
 
 * **Menghitung Total Data Unik**
+  
     Jumlah rincian data unik dapat dilihat pada gambar berikut:
 
     ![dataset unik](https://github.com/user-attachments/assets/5c92e544-da79-45cd-93d5-c1d4e548f8ae)
@@ -140,6 +147,7 @@ Pada tahap ini, jumlah variabel dataset movies sebanyak 9742 dan memiliki 3 kolo
     Dari hasil diatas terdapat 9742 film pada dataset movies, 9724 film pada dataset ratings dan 610 user pada dataset ratings
 
 * **Pengecekan *Outliers***
+  
     Pada tahap ini, akan diperlihatkan statistik deskriptif dari dataset variabel df_movies dan ratings mengunakan fungsi `describe()`.
 
     *1. Variabel movies*
@@ -153,6 +161,7 @@ Pada tahap ini, jumlah variabel dataset movies sebanyak 9742 dan memiliki 3 kolo
     Berdasarkan tampilan deskriptif dataset movies dan ratings dapat dilihat tidak mencolok ada pesebaran nilai yang menimbulkan `outlier`.
 
 * **Distribusi Ratings**
+  
     Langkah ini bertujuan untuk:
     * Mengidentifikasi nilai rating yang paling umum diberikan oleh pengguna.
     * Menilai apakah data rating cenderung condong ke satu nilai (misalnya, lebih banyak rating tinggi atau rendah).
@@ -165,6 +174,7 @@ Pada tahap ini, jumlah variabel dataset movies sebanyak 9742 dan memiliki 3 kolo
     Berdasarkan diagram plot rating diatas, dapat dilihat bahwa nilai ratings paling umum diberikan pengguna adalah rating 4.0 dengan presentasi 286.6%, rating 3.0 dengan presentasi 19.9%, rating 5.0 dengan prestansi 13.1%. rating 3.5 dengan presentasi 13.0%, sedangkan nilai rating yang lain berada di bawah pada presentasi 12.0%
 
 * **Distribusi Gengre**
+  
     Distribusi genre film adalah aspek penting dalam sistem rekomendasi, karena membantu memahami preferensi pengguna dan pola konsumsi film. Pada proyek ini menggunakan metode visualisasi Data dalam menampilkan grafik batang yang menggambarkan proporsi masing-masing genre secara visual, sehingga memudahkan pemahaman. Pada tahap ini akan dilakukan membersihkan, memproses, dan menormalkan data dalam kolom genres pada DataFrame df_movies Ada beberapa fungsi yang dipakai yakni:
     * `fillna('')`, berfungsi untuk mengisi nilai null atau NaN dalam kolom genres dengan string kosong ('').
     * `apply(lambda x: x.split('|') if x else [])`, fungsi lambda ini memisahkan string genre berdasarkan tanda | menjadi list. Jika datanya kosong, akan dikembalikan list kosong [].
@@ -176,6 +186,7 @@ Pada tahap ini, jumlah variabel dataset movies sebanyak 9742 dan memiliki 3 kolo
     Dari grafik diatas, dapat dilihat bahwa genre Drama dan Comedy paling banyak tersebar pada setiap film dalam dataset dengan jumah sebesar 4361 dan 3756. Sedangkan genre yang jumlahnya dibawahnya ada Thriller dengan 1894,Action dengan 1828,Romance dengan 1596,Adventure dengan 1263,Crime dengan 1199, selain itu 12 yang lain di bawah 1000
 
 * **Analisis Rating Tertinggi**
+  
     Selanjutnya gabungkan dataset df_movies dan ratings dengan fungsi pandas `pd.merge` dan mencari 10 film dengan rating tertinggi. Alisis rating tertinggi dapat dilihat pada gambar berikut:
 
     ![rating hight](https://github.com/user-attachments/assets/4797880a-d123-4ea9-b9d2-a3f88b8f7ab2)
@@ -183,6 +194,7 @@ Pada tahap ini, jumlah variabel dataset movies sebanyak 9742 dan memiliki 3 kolo
     Dapat dilihat pada gambar diatas dari 10 rating tertinggi film yang ada, film dengan judul Forrest Gump memiliki rating teratas dengan mean rating 4.164 dan total rating sebanyak 329
 
 * **Membandingkan Peringkat rata-rata vs Jumlah total peringkat**
+  
     Pada tahap ini akan dibandingkan rata-rata rangkin dan total rangking menggunakan `joinplot` untuk melihat pesebaran data yang dapat dilihat pada gambari dibawah ini:
 
     ![cihuy pisan](https://github.com/user-attachments/assets/d8530e60-98b8-43d6-ab23-fd545f4a647c)
@@ -190,9 +202,11 @@ Pada tahap ini, jumlah variabel dataset movies sebanyak 9742 dan memiliki 3 kolo
     Berdasarkan grafik pesebaran data diatas total rating tertinggi berada diatas 250 sebanyak 5 film, sadangkan rata-rata terbanyak pengguna memberi rating terhadap film berada diretang nilai 2 - 4.5 rating.
   
 ## Data Preparation
+
 Data preparation adalah langkah penting dalam pengembangan sistem rekomendasi film yang efektif. Proses ini mencakup beberapa tahap, mulai dari pengumpulan data hingga pemrosesan akhir sebelum data digunakan dalam model machine learning. 
 
 ###  Data Cleaning
+
 Proses ini bertujuan untuk menyiapkan data mentah agar dapat digunakan secara efektif dalam model machine learning. Setelah data terkumpul ada beberapa langkah yang perlu lakukan dalam tahap ini yaitu:
 
 * **Menangani Nilai Kosong (Missing Value)**
@@ -306,6 +320,7 @@ Dari hasil diatas, terdapat 20000 baris dan 5 kolom dan memiliki 1 tipe data flo
     Selanjutnya ambil total_user, total movie dan nilai rating minimum dan maksimum untuk proses pembagian dataset sebelum melakukan pelatihan model. Hasilnya diperoleh yaitu 610 pengguna, 5189 film serta nilai rating minimum sebesar 0.5 dan maksimum sebesar 5.0.
 
 * **Membagi Data untuk Training dan Validasi**
+  
     Pada tahap ini, data training dan data validasi dibagi untuk proses pelatihan model. Namun sebelum itu, perlu mengacak dataset sehingga menjadi data yang valid. Hasilnya seperti pada gambar berikut:
 
     ![Training dan Validasi](https://github.com/user-attachments/assets/e25958d4-4a8a-4574-b2c8-164e725f773f)    

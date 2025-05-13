@@ -317,7 +317,51 @@ Dari hasil diatas, terdapat 20000 baris dan 5 kolom dan memiliki 1 tipe data flo
 
     ![encode movie](https://github.com/user-attachments/assets/b6bbce41-7e45-4d05-a4fa-0e55d2ee9e99)
 
-    Selanjutnya ambil total_user, total movie dan nilai rating minimum dan maksimum untuk proses pembagian dataset sebelum melakukan pelatihan model. Hasilnya diperoleh yaitu 610 pengguna, 5189 film serta nilai rating minimum sebesar 0.5 dan maksimum sebesar 5.0.
+* **Melakukan Teknik mapping userID dan movieID**
+  
+  Sebelum data digunakan dalam model berbasis embedding seperti **Neural Collaborative Filtering (NCF)**, kita perlu mengubah kolom `userId` dan `movieId` ke bentuk angka indeks. Ini diperlukan karena layer embedding hanya menerima input berupa angka integer (bukan ID asli seperti `userId = 123` atau `movieId = 345`). Proses ini membantu model dalam mengenali identitas pengguna dan item dalam format integer, yang kemudian digunakan sebagai input ke dalam embedding layer.
+
+Kita lakukan mapping ke integer dengan `map()` berdasarkan dictionary hasil encoding sebelumnya.
+
+```python
+# Mapping userID ke dataframe user
+df_sample_final['user'] = df_sample_final['userId'].map(user_to_user_encoded)
+
+# Mapping movieID ke dataframe movie
+df_sample_final['movie'] = df_sample_final['movieId'].map(movie_to_movie_encoded)
+```
+
+* **Mengambil total_user, total movie dan nilai rating minimum dan maksimum untuk proses pembagian dataset sebelum melakukan pelatihan**
+  
+  Sebelum membangun model rekomendasi berbasis neural network, kita perlu mengetahui statistik dasar dari dataset yang sudah diproses:
+  
+```python
+# Mendapatkan jumlah user
+total_user = len(user_to_user_encoded)
+print(total_user)
+
+# Mendapatkan jumlah movie
+total_movies = len(movie_encoded_to_movie)
+print(total_movies)
+
+# Mengubah rating menjadi nilai float32
+df_sample_final['rating'] = df_sample_final['rating'].values.astype(np.float32)
+
+# Nilai minimum dan maksimum rating
+min_rating = min(df_sample_final['rating'])
+max_rating = max(df_sample_final['rating'])
+
+print('Number of User: {}, Number of Movie: {}, Min Rating: {}, Max Rating: {}'.format(
+    total_user, total_movies, min_rating, max_rating
+))
+```
+
+- **Jumlah user dan movie** diperlukan untuk menentukan ukuran input dan output dari layer embedding.
+- **Tipe data rating** dikonversi ke `float32` agar kompatibel dengan TensorFlow/Keras dan efisien saat training.
+- **Nilai minimum dan maksimum rating** dibutuhkan untuk normalisasi (jika diperlukan) atau untuk evaluasi performa model.
+
+![total user](https://github.com/user-attachments/assets/e50a500e-bff8-469f-af3b-636b135ad4cc)
+Setelah mengambil total_user, total movie dan nilai rating minimum dan maksimum untuk proses pembagian dataset sebelum melakukan pelatihan model. Hasilnya diperoleh yaitu 610 pengguna, 5134 film serta nilai rating minimum sebesar 0.5 dan maksimum sebesar 5.0.
 
 * **Membagi Data untuk Training dan Validasi**
   
@@ -325,7 +369,9 @@ Dari hasil diatas, terdapat 20000 baris dan 5 kolom dan memiliki 1 tipe data flo
 
     ![Training dan Validasi](https://github.com/user-attachments/assets/e25958d4-4a8a-4574-b2c8-164e725f773f)    
 
-    Selanjutnya, buat variabel x untuk mencocokkan data user dan Movie menjadi satu value, kemudian variabel y untuk membuat rating dari hasil. Terakhir,  bagi menjadi `80%` data train dan `20%`` data validasi.
+    Selanjutnya, buat variabel x untuk mencocokkan data user dan Movie menjadi satu value, kemudian variabel y untuk membuat rating dari hasil. Terakhir,  bagi menjadi `80%` data train dan `20%`` data validasi, ini akan      menghasilkan output seperti gambar berikut:
+
+    ![treain and evaluasi](https://github.com/user-attachments/assets/a1a8408d-1ee8-4553-ac1c-9d810065d070)
 
 ## Modeling and Result
 
@@ -349,11 +395,11 @@ Selanjutnya, buat fungsi rekomendasi film berdasarkan kemiripan genre dengan men
 
 Pada proses pengujian akan diambil satu judul film untuk dilakukan pengujian seperti yang terlihat pada gambar berikut:
 
-![uy](https://github.com/user-attachments/assets/48c0f5de-a01f-464b-8dfe-74bbcf9f72b6)
+![uji rekomendasi](https://github.com/user-attachments/assets/f4ca81c6-cacc-4969-90dd-91345429815b)
 
 10 hasil rekomendasi film dapat dilihat pada gambar berikut:
 
-![oko](https://github.com/user-attachments/assets/385c01ec-db4a-437a-b1e8-5f2bb29210f4)
+![content filtering](https://github.com/user-attachments/assets/34b0b696-4f93-4000-b6d0-534c21bfe24a)
 
 Dapat dilihat genre film uji yang dimasukan adalah `Adventure`, `Children`, `Fantasy`. Hasilnya genre ini tersebar di dalam 10 judul film yang memiliki kesaaman genre.
 
@@ -367,15 +413,15 @@ Langkah berikutnya, mulailah proses training. Pada proses ini menggunakan fungsi
 
 Proses latihan model dapat dilihat pada gambar berikut:
 
-![op lur](https://github.com/user-attachments/assets/4d407fda-6372-4e66-a7f1-df47009406ef)
+![training colaborative](https://github.com/user-attachments/assets/808c4725-ea06-4368-b42b-d4a6e723b742)
 
-Dapat dilihat, hasil pelatiahn memperoleh nilai mean_absolute_error: 0.1653 dan root_mean_squared_error: 0.2101
+Dapat dilihat, hasil pelatiahn memperoleh nilai mean_absolute_error: 0.1692 dan root_mean_squared_error: 0.2145
 
 ### Penujian Sistem Rekomendasi
 
 Proses pengujian sistem dilakukan berdasarkan Top-10 Rekomendasi film terbaik kepada pengguna yang memiliki kesamaan:
 
-![iya](https://github.com/user-attachments/assets/5eedc572-885d-4394-8788-5ad4e8b423a3)
+![colaborative filtering](https://github.com/user-attachments/assets/ff406870-cd1b-4e79-89c3-0688f24c7f4d)
 
 ## Evaluation
 
@@ -397,16 +443,16 @@ Hasil pengujian menggunakan atribut genre {"Adventure", "Children", "Fantasy"} d
 
 | | Title                   |	Genres                          | Hasil Presisis  |
 |-| ----------              | ----------                      | -----------  |
-|0|	Chronicles of Narnia (2004)	      | Adventure, Children, Fantasy           | TRUE   |
-|1|	Bridge to Terabithia (2007)	                | Adventure, Children, Fantasy          | TRUE   |
-|2|	Escape to Witch Mountain (1975)	|	Adventure, Children, Fantasy | TRUE   |
-|3|	Pete's Dragon (2016) |	Adventure, Children, Fantasy          | TRUE   |
-|4|	Jumanji (1995)             | Adventure, Children, Fantasy         | TRUE   |
-|5|	NeverEnding Story III, The (1994)                 |	Adventure, Children, Fantasy          | TRUE   |
-|6|	Harry Potter and the Sorcerer's Stone (1997)              |	Adventure, Children, Fantasy           | TRUE   |
-|7|	Return to Oz (1985)        |	Adventure, Children, Fantasy   | TRUE   |
-|8|	Water Horse: Legend of the Deep, The (2007) |	Adventure, Children, Fantasy   | TRUE   |
-|9| Golden Compass, The (2007)              |	Adventure, Children, Fantasy | TRUE   |
+|0|	Harry Potter and the Sorcerer's Stone(a.k.a Harry Potter and the Philosopher's Stone) (2001)	      | Adventure, Children, Fantasy           | TRUE   |
+|1|	Indian in the Cupboard, The (1995)	                | Adventure, Children, Fantasy          | TRUE   |
+|2|	Chronicles of Narnia: Prince Caspian, The (2008)	|	Adventure, Children, Fantasy | TRUE   |
+|3|	Chronicles of Narnia: The Lion, the Witch and the Wardrobe, the (2005)|	Adventure, Children, Fantasy          | TRUE   |
+|4|	Jumanji (1995)           | Adventure, Children, Fantasy         | TRUE   |
+|5|	Santa Claus: The Movie (1985)                 |	Adventure, Children, Fantasy          | TRUE   |
+|6|	Bridge to Terabithia (2007)              |	Adventure, Children, Fantasy           | TRUE   |
+|7|	Seventh Son (2014)       |	Adventure, Children, Fantasy   | TRUE   |
+|8|	Pete's Dragon (2016) |	Adventure, Children, Fantasy   | TRUE   |
+|9| Escape to Witch Mountain (1975)             |	Adventure, Children, Fantasy | TRUE   |
 
 diperoleh nilai _True_Positive_ = 10 , _False_Positive_ = 0. Jika dimasukan dalam rumus metriks maka nilai precision 10/10 = 1 atau 100.00%.
 

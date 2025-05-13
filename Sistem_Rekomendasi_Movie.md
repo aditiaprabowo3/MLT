@@ -103,7 +103,7 @@ Pada tahap ini, akan dialkukan analisis statistik yang melibatkan variabel movie
     | title | Judul dari film yang ada dalam dataset |
     | genre                 | Daftar genre film, seperti Action, Comedy, Drama. Biasanya berupa JSON atau daftar string   |
     
-    *b. ratings *
+    *b. ratings*
   
     Deskripsi variabel movies dapat dilihat pada gambari berikut:
 
